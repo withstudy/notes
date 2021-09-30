@@ -1,0 +1,154 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hexo</title><meta name="description"><meta name="author" content="xcl"><meta name="copyright" content="xcl"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://withstudy.github.io/page/2/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="website"><meta property="og:title" content="Hexo"><meta property="og:url" content="https://withstudy.github.io/page/2/"><meta property="og:site_name" content="Hexo"><meta property="og:description"><meta property="og:image" content="https://withstudy.github.io/img/avatar.png"><meta property="article:published_time" content="2021-09-15T08:45:54.203Z"><meta property="article:modified_time" content="2021-09-15T08:45:54.203Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  bookmark: {
+    message_prev: 'Press',
+    message_next: 'to bookmark this page'
+  },
+  runtime_unit: 'days',
+  runtime: false,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isSidebar: false
+  }</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.0"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">10</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">5</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(https://i.loli.net/2020/05/01/IuWi8QbHvzjlOPw.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">Hexo</a></span><span class="pull-right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="site-info"><h1 id="site_title">Hexo</h1><div id="site_subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/withstudy" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:xxxxxx@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div id="scroll_down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout_page" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/02/28/1-webpack/" title="webpack-开发环境配置">     <img class="post_bg" data-src="https://i.loli.net/2021/09/15/2lhb6RSkeMdw8ar.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="webpack-开发环境配置"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/02/28/1-webpack/" title="webpack-开发环境配置">webpack-开发环境配置</a><div class="article-meta-wrap"><time class="post-meta__date" title="Created 2020-02-28 15:31:20"><i class="far fa-calendar-alt"></i>2020-02-28</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/webpack/">webpack</a></span></div><div class="content">基础知识五个核心概念entry 指定webpack打包的入口文件output 配置webpack打包输出loader  loader是一种打包的方案，webpack默认只识别js结尾的文件plugins 插件，有些类型loader不能完全解决，需要使用插件mode 指定webpack打包模式，包括开发模式、生产模式
+安装打包初体验初始package.jsonnpm init -y全局安装npm i webpack webpack-cli -g生产安装npm i webpack webpack-cli -D
+1、入口文件2、运行打包开发环境 :webpack ./src/index.js -o ./build/built.js --mode=developent  webpack会以 ./src/index.js 为入口文件开始打包，打包后输出到 ./build/buil.js生产环境 :webpack ./src/index.js -o ./build/built.js --mode=production  webpack会以 ./src/index.js 为入口文件开始打包，打包后输 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/02/24/4-Vue/" title="vue源码分析-手写模拟简单源码(4)">     <img class="post_bg" data-src="https://i.loli.net/2021/09/15/iqmJedx4ahWXZSb.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="vue源码分析-手写模拟简单源码(4)"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/02/24/4-Vue/" title="vue源码分析-手写模拟简单源码(4)">vue源码分析-手写模拟简单源码(4)</a><div class="article-meta-wrap"><time class="post-meta__date" title="Created 2020-02-24 19:36:18"><i class="far fa-calendar-alt"></i>2020-02-24</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/vue/">vue</a></span></div><div class="content">响应式原理
+我们在使用 Vue 时候, 赋值属性获得属性都是直接使用的 Vue 实例
+我们在设计属性值的时候, 页面的数据更新
+
+1234567Object.defineProperty( 对象, '设置什么属性名', &#123;  writeable  configurable  enumerable:  控制属性是否可枚举, 是不是可以被 for-in 取出来  set() &#123;&#125;  赋值触发  get() &#123;&#125;  取值触发&#125; )
+
+1234567891011121314151617// 简化后的版本function defineReactive( target, key, value, enumerable ) &#123;  // 函数内部就是一个局部作用域, 这个 value 就只在函数内使用的变量 ( 闭包 )  Object.defineProperty( target, key, &#123;    configurable: true,    enumerable: !!enumerable,    get () &# ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/02/24/3-Vue/" title="vue源码分析-手写模拟简单源码(3)">     <img class="post_bg" data-src="https://i.loli.net/2021/09/15/iqmJedx4ahWXZSb.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="vue源码分析-手写模拟简单源码(3)"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/02/24/3-Vue/" title="vue源码分析-手写模拟简单源码(3)">vue源码分析-手写模拟简单源码(3)</a><div class="article-meta-wrap"><time class="post-meta__date" title="Created 2020-02-24 12:36:18"><i class="far fa-calendar-alt"></i>2020-02-24</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/vue/">vue</a></span></div><div class="content">函数科里化概念:
+
+科里化: 一个函数原本有多个参数, 之传入一个参数, 生成一个新函数, 由新函数接收剩下的参数来运行得到结构.
+偏函数: 一个函数原本有多个参数, 之传入一部分参数, 生成一个新函数, 由新函数接收剩下的参数来运行得到结构.
+高阶函数: 一个函数参数是一个函数, 该函数对参数这个函数进行加工, 得到一个函数, 这个加工用的函数就是高阶函数.为什么要使用科里化? 为了提升性能. 使用科里化可以缓存一部分能力.使用两个案例来说明:
+判断元素
+虚拟 DOM 的 render 方法
+判断元素:
+
+Vue 本质上是使用 HTML 的字符串作为模板的, 将字符串的 模板 转换为 AST, 再转换为 VNode.
+
+模板 -&gt; AST
+AST -&gt; VNode
+VNode -&gt; DOM
+
+最消耗性能是字符串解析 ( 模板 -&gt; AST )
+在 Vue 中每一个标签可以是真正的 HTML 标签, 也可以是自定义组件, 问怎么区分???在 Vue 源码中其实将所有可以用的 HTML 标签已经存起来了.假设这里是考虑几个标签:
+1let tags = 'div, ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2020/02/24/2-Vue/" title="vue源码分析-手写模拟简单源码(2)">vue源码分析-手写模拟简单源码(2)</a><div class="article-meta-wrap"><time class="post-meta__date" title="Created 2020-02-24 12:31:20"><i class="far fa-calendar-alt"></i>2020-02-24</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/vue/">vue</a></span></div><div class="content">要解决一个问题: 使用 ‘xxx.yyy.zzz’ 可以来访问某一个对象，就是用字符串路径来访问对象的成员。
+123456789function getValueByPath( obj, path ) &#123;     let paths = path.split( '.' ); // [ xxx, yyy, zzz ]     let res = obj;     let prop;     while( prop = paths.shift() ) &#123;       res = res[ prop ];     &#125;     return res;   &#125;
+
+将上一篇的方法改进一下:
+12345678910111213141516function compiler( template, data ) &#123;      let childNodes = template.childNodes; // 取出子元素      for ( let i = 0; i &lt; childNodes.length; i++ ) &#123;        l ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2020/02/24/1-Vue/" title="vue源码分析-手写模拟简单源码(1)">vue源码分析-手写模拟简单源码(1)</a><div class="article-meta-wrap"><time class="post-meta__date" title="Created 2020-02-24 11:31:20"><i class="far fa-calendar-alt"></i>2020-02-24</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/vue/">vue</a></span></div><div class="content">使用步骤:
+编写 页面 模板 
+直接在 HTML 标签中写 标签
+使用 template
+使用 单文件 ( &lt;template /&gt; )
+
+
+创建 Vue 的实例
+在 Vue 的构造函数中提供: data, methods, computed, watcher, props, …
+
+
+将 Vue 挂载到 页面中 ( mount )
+
+123456789101112131415&lt;!-- 写模板 --&gt;  &lt;div id="root"&gt;    &lt;p&gt;&#123;&#123;name&#125;&#125;&lt;/p&gt;    &lt;p&gt;&#123;&#123;message&#125;&#125;&lt;/p&gt;  &lt;/div&gt;  &lt;script&gt;    // 第二步 创建 实例    let app = new Vue( &#123;      el: '#root',      data: &#123;        name: '张三'        , message: '是一个男人'     ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">xcl</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives"><div class="headline">Articles</div><div class="length_num">10</div></a></div><div class="card-info-data-item is-center">      <a href="/tags"><div class="headline">Tags</div><div class="length_num">5</div></a></div><div class="card-info-data-item is-center">     <a href="/categories"><div class="headline">Categories</div><div class="length_num">5</div></a></div></div><div class="card-info-bookmark is-center"><button class="button--animated" id="bookmark-it" title="Bookmark"><i class="fas fa-bookmark"></i><span>Bookmark</span></button></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/withstudy" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:xxxxxx@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-recent-item"><div class="aside-recent-post"><a href="/2021/09/15/1.Bowser_GC/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://i.loli.net/2021/09/15/LP1muf2TNSoc8WD.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="浏览器的垃圾回收机制" alt="浏览器的垃圾回收机制"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2021/09/15/1.Bowser_GC/" title="浏览器的垃圾回收机制">浏览器的垃圾回收机制</div><time class="aside-post_meta post-meta__date" title="Created 2021-09-15 16:12:01">2021-09-15</time></div></a></div><div class="aside-recent-post"><a href="/2021/09/09/Hexo/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="Hexo" alt="Hexo"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2021/09/09/Hexo/" title="Hexo">Hexo</div><time class="aside-post_meta post-meta__date" title="Created 2021-09-09 14:49:10">2021-09-09</time></div></a></div><div class="aside-recent-post"><a href="/2021/09/09/1-https/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://i.loli.net/2021/09/09/G1PReNVLltUcMmX.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="HTTPS解决的问题" alt="HTTPS解决的问题"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2021/09/09/1-https/" title="HTTPS解决的问题">HTTPS解决的问题</div><time class="aside-post_meta post-meta__date" title="Created 2021-09-09 13:08:20">2021-09-09</time></div></a></div><div class="aside-recent-post"><a href="/2020/06/22/React/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="React" alt="React"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2020/06/22/React/" title="React">React</div><time class="aside-post_meta post-meta__date" title="Created 2020-06-22 12:36:18">2020-06-22</time></div></a></div><div class="aside-recent-post"><a href="/2020/02/29/2-webpack/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://i.loli.net/2021/09/15/2lhb6RSkeMdw8ar.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="webpack-开发环境配置 2" alt="webpack-开发环境配置 2"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2020/02/29/2-webpack/" title="webpack-开发环境配置 2">webpack-开发环境配置 2</div><time class="aside-post_meta post-meta__date" title="Created 2020-02-29 14:44:20">2020-02-29</time></div></a></div></div></div></div><div class="card-widget card-categories"><div class="card-content"><div class="item-headline"><i class="fas fa-folder-open"></i><span>Categories</span></div><ul class="card-category-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/React/"><span class="card-category-list-name">React</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/http/"><span class="card-category-list-name">http</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/vue/"><span class="card-category-list-name">vue</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/webpack/"><span class="card-category-list-name">webpack</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/"><span class="card-category-list-name">浏览器</span><span class="card-category-list-count">1</span></a></li>
+                       
+            </ul></div></div><div class="card-widget card-tags"><div class="card-content"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/React/" style="font-size: 16px; color: #999">React</a> <a href="/tags/http/" style="font-size: 16px; color: #999">http</a> <a href="/tags/vue/" style="font-size: 22px; color: #99a9bf">vue</a> <a href="/tags/webpack/" style="font-size: 19px; color: #99a1ac">webpack</a> <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" style="font-size: 16px; color: #999">浏览器</a></div></div></div><div class="card-widget card-archives"><div class="card-content"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/09/"><span class="card-archive-list-date">September 2021</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/06/"><span class="card-archive-list-date">June 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/02/"><span class="card-archive-list-date">February 2020</span><span class="card-archive-list-count">6</span></a></li></ul></div></div><div class="card-widget card-webinfo"><div class="card-content"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="webinfo-article-name">Article :</div><div class="webinfo-article-count">10</div></div><div class="webinfo-item">      <div class="webinfo-site-uv-name">UV :</div><div class="webinfo-site-uv-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="webinfo-site-name">PV :</div><div class="webinfo-site-pv-count" id="busuanzi_value_site_pv"></div></div></div></div></div></div></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By xcl</div><div class="framework-info"><span>Driven </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><button class="translate_chn_to_cht" id="translateLink" title="Switch Between Traditional Chinese And Simplified Chinese">繁</button><button id="darkmode" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" title="Setting"><i class="fas fa-cog"></i></button><button id="go-up" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="https://cdn.jsdelivr.net/npm/typed.js"></script><script>var subtitleEffect = true
+if (subtitleEffect) { 
+  var typed = new Typed("#subtitle", {
+    strings: "今日事&#44;今日畢,Never put off till tomorrow what you can do today".split(","),
+    startDelay: 300,
+    typeSpeed: 150,
+    loop: true,
+    backSpeed: 50
+  })
+} else {
+  document.getElementById("subtitle").innerHTML = '今日事&#44;今日畢'
+}</script></body></html>
