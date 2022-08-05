@@ -1,0 +1,166 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>网络：HTTP发展过程 | Hexo</title><meta name="description" content="学习总结"><meta name="keywords" content="网络"><meta name="author" content="xcl"><meta name="copyright" content="xcl"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://withstudy.github.io/2021/11/23/Internet-HTTP_history/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="网络：HTTP发展过程"><meta property="og:url" content="https://withstudy.github.io/2021/11/23/Internet-HTTP_history/"><meta property="og:site_name" content="Hexo"><meta property="og:description" content="学习总结"><meta property="og:image" content="https://i.loli.net/2021/11/23/fa31uAzw7gLdn9P.jpg"><meta property="article:published_time" content="2021-11-23T03:15:27.000Z"><meta property="article:modified_time" content="2021-11-23T03:16:11.007Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="prev" title="网络：HTTP详解" href="https://withstudy.github.io/2021/11/23/Internet-HTTP_detail/"><link rel="next" title="网络：DNS与CDN总结" href="https://withstudy.github.io/2021/11/22/Internet-DNS_CDN/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  bookmark: {
+    message_prev: 'Press',
+    message_next: 'to bookmark this page'
+  },
+  runtime_unit: 'days',
+  runtime: false,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true
+  }</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 6.1.0"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">37</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">16</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">17</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" target="_blank" rel="noopener" href="https://music.163.com/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://www.bilibili.com/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="http://120.24.39.145/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%EF%BC%9AHTTP%E5%8F%91%E5%B1%95%E8%BF%87%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">网络：HTTP发展过程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81HTTP-0-9"><span class="toc-number">1.1.</span> <span class="toc-text">一、HTTP&#x2F;0.9</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81HTTP-1-0"><span class="toc-number">1.2.</span> <span class="toc-text">二、HTTP&#x2F;1.0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81HTTP-1-1"><span class="toc-number">1.3.</span> <span class="toc-text">三、HTTP&#x2F;1.1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81HTTP-2-0"><span class="toc-number">1.4.</span> <span class="toc-text">四、HTTP&#x2F;2.0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81HTTP-3-0"><span class="toc-number">1.5.</span> <span class="toc-text">五、HTTP&#x2F;3.0</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://i.loli.net/2021/11/23/fa31uAzw7gLdn9P.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">Hexo</a></span><span class="pull-right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" target="_blank" rel="noopener" href="https://music.163.com/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://www.bilibili.com/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="http://120.24.39.145/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">网络：HTTP发展过程</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="Created 2021-11-23 11:15:27"><i class="far fa-calendar-alt fa-fw"></i> Created 2021-11-23</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="Updated 2021-11-23 11:16:11"><i class="fas fa-history fa-fw"></i> Updated 2021-11-23</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fas fa-inbox fa-fw post-meta__icon"></i><a class="post-meta__categories" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a></span></div><div class="meta-secondline"> </div><div class="meta-thirdline"><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta__icon"></i><span>Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="网络：HTTP发展过程"><a href="#网络：HTTP发展过程" class="headerlink" title="网络：HTTP发展过程"></a>网络：HTTP发展过程</h1><p>HTTP超文本传输协议，是浏览器和服务器之间的通信协议。</p>
+<p>1991 年 HTTP 正式诞生，到如今已经经过了几个版本的迭代，本片文章主要讲讲各个版本的特点。</p>
+<p><img src= "/img/loading.gif" data-src="http://img.mp.itc.cn/upload/20170731/1e77ec4574774711975f3bab2b339c40.jpg" alt="img"></p>
+<h2 id="一、HTTP-0-9"><a href="#一、HTTP-0-9" class="headerlink" title="一、HTTP/0.9"></a>一、HTTP/0.9</h2><p><code>http0.9</code>最为最开始诞生的，只是一个简单的协议，只有一个GET方法，没有首部，目标只是为了用来获取HTML。</p>
+<h2 id="二、HTTP-1-0"><a href="#二、HTTP-1-0" class="headerlink" title="二、HTTP/1.0"></a>二、HTTP/1.0</h2><p>随着HTTP的发展，只能传输文本内容已经满足不了需求，所以新增了：</p>
+<ol>
+<li><p><strong>增加了请求头和响应头</strong></p>
+</li>
+<li><p><strong>任何格式的内容都可以发送</strong></p>
+<p><strong>Content-Type</strong>：服务器回应的时候告诉客户端数据类型是什么</p>
+<p><strong>Accept</strong>：请求时用于指定客户端接受哪些类型的信息</p>
+<p><strong>Content-Encoding</strong>：字段说明数据的压缩方法</p>
+<p><strong>Accept-Encoding：</strong>客户端在请求的时候说明自己可以接受那些压缩方法</p>
+</li>
+<li><p><strong>引入了POST与HEAD命令</strong></p>
+</li>
+<li><p><strong>可以缓存，使用<code>Expires</code>头部字段实现</strong></p>
+</li>
+</ol>
+<h2 id="三、HTTP-1-1"><a href="#三、HTTP-1-1" class="headerlink" title="三、HTTP/1.1"></a>三、HTTP/1.1</h2><p><code>HTTP/1.1</code>是现在应用最为广泛的一个协议</p>
+<p><code>HTTP/1.0</code>每次请求资源都需要新的一个HTTP请求，每次都会三次握手创建连接和四次挥手关闭连接增加了网络开销（<code>队头阻塞</code>），并且还是一发一收，增加了时间的消耗</p>
+<p>所以新增了：</p>
+<ol>
+<li><p><strong>持久连接</strong></p>
+<p>TCP连接默认不关闭，可以被多个请求复用，户端和服务器发现对方一段时间没有活动，就可以主动关闭连接。</p>
+</li>
+<li><p><strong>管道机制</strong></p>
+<p>在同一个TCP连接里面，客户端可以同时发送多个请求，不用等上一个请求返回，但是服务器还是按照顺序，先回应A请求，完成后再回应B请求</p>
+</li>
+<li><p><strong>允许范围请求，即在请求头中加入<code>Range</code>头部</strong></p>
+</li>
+<li><p><strong>引入了更多的缓存控制策略，如Entity tag，If-Unmodified-Since, If-Match, If-None-Match等</strong></p>
+</li>
+<li><p><strong>新增PUT,OPTIONS,DELETE等请求方法</strong></p>
+</li>
+</ol>
+<h2 id="四、HTTP-2-0"><a href="#四、HTTP-2-0" class="headerlink" title="四、HTTP/2.0"></a>四、HTTP/2.0</h2><p>新增了：</p>
+<ol>
+<li><p><strong>复用TCP连接</strong></p>
+<p>在一个连接里，客户端和浏览器都可以同时发送多个请求或回应，而且不用按照顺序一一对应，这样就避免了”队头堵塞”。</p>
+<p><img src= "/img/loading.gif" data-src="http://img.mp.itc.cn/upload/20170731/fe1cda26ec2b4cf7b1a7b6a676c05fb5_th.jpg" alt="img"></p>
+</li>
+<li><p><strong>头信息压缩机制</strong></p>
+<p>因为HTTP协议不带状态，所以请求的很多字段都是重复的，比如cookie，User Agent，每次请求都必须附带，会很浪费宽带也影响速度，对此作出了优化。<br>① 头信息使用<code>gzip</code>或<code>compress</code>压缩后再发送</p>
+<p>② 客户端和服务器同时维护一张头信息表，所有字段都会存入这个表，生成一个索引号，以后就不发送同样字段了，只发送索引号，这样就提高速度了。</p>
+</li>
+<li><p><strong>服务器推送</strong></p>
+<p>允许服务器未经请求，主动向客户端发送资源</p>
+</li>
+<li><p><strong>新的二进制格式</strong></p>
+<p><code>HTTP1.x</code>的解析是基于文本。基于文本协议的格式解析存在天然缺陷，文本的表现形式有多样性，要做到健壮性考虑的场景必然很多，二进制则不同，只认0和1的组合。基于这种考虑<code>HTTP2.0</code>的协议解析决定采用二进制格式，实现方便且健壮。</p>
+</li>
+</ol>
+<h2 id="五、HTTP-3-0"><a href="#五、HTTP-3-0" class="headerlink" title="五、HTTP/3.0"></a>五、HTTP/3.0</h2><p>2018 年<code>HTTP/3</code> 将底层依赖的<code>TCP</code> 改成 <code>UDP</code>,<code>UDP</code> 相对于 <code>TCP</code> 而言最大的特点是传输数据时不需要建立连接，可以同时发送多个数据包，所以传输效率很高，缺点就是没有确认机制来保证对方一定能收到数据。</p>
+<p>参考文章：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41047322/article/details/81152135">HTTP0.9/1.0/1.1/2</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903844216832007">前端基础篇之HTTP协议</a></p>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">xcl</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://withstudy.github.io/2021/11/23/Internet-HTTP_history/">https://withstudy.github.io/2021/11/23/Internet-HTTP_history/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%BD%91%E7%BB%9C/">网络</a></div><div class="post_share"><div class="social-share" data-image="https://s2.loli.net/2022/08/05/JPaEXoMlbQzASxy.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/11/23/Internet-HTTP_detail/"><img class="prev-cover" data-src="https://i.loli.net/2021/11/23/fa31uAzw7gLdn9P.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">网络：HTTP详解</div></div></a></div><div class="next-post pull-right"><a href="/2021/11/22/Internet-DNS_CDN/"><img class="next-cover" data-src="https://i.loli.net/2021/11/22/DtFamwJ5R7PNvoC.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">网络：DNS与CDN总结</div></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2021/11/22/Internet-DNS_CDN/" title="网络：DNS与CDN总结"><img class="relatedPosts_cover" data-src="https://i.loli.net/2021/11/22/DtFamwJ5R7PNvoC.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-22</div><div class="relatedPosts_title">网络：DNS与CDN总结</div></div></a></div><div class="relatedPosts_item"><a href="/2021/11/24/Internet-HTTP_Cache/" title="网络：HTTP缓存"><img class="relatedPosts_cover" data-src="https://i.loli.net/2021/11/23/fa31uAzw7gLdn9P.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-24</div><div class="relatedPosts_title">网络：HTTP缓存</div></div></a></div><div class="relatedPosts_item"><a href="/2021/11/23/Internet-HTTP_detail/" title="网络：HTTP详解"><img class="relatedPosts_cover" data-src="https://i.loli.net/2021/11/23/fa31uAzw7gLdn9P.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-23</div><div class="relatedPosts_title">网络：HTTP详解</div></div></a></div><div class="relatedPosts_item"><a href="/2021/11/19/Internet-TCP_UDP/" title="网络：TCP与UDP总结"><img class="relatedPosts_cover" data-src="https://i.loli.net/2021/11/19/e5VrMkXSJm9qOKB.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-19</div><div class="relatedPosts_title">网络：TCP与UDP总结</div></div></a></div></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div><div id="disqus_thread"></div><script>var disqus_config = function () {
+  this.page.url = 'https://withstudy.github.io/2021/11/23/Internet-HTTP_history/';
+  this.page.identifier = '2021/11/23/Internet-HTTP_history/';
+  this.page.title = '网络：HTTP发展过程';
+};
+(function() { 
+  var d = document, s = d.createElement('script');
+  s.src = 'https://.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+})();
+</script></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By xcl</div><div class="framework-info"><span>Driven </span><a target="_blank" rel="noopener" href="https://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly"><span>Butterfly</span></a></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><button id="readmode" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="font_plus" title="Increase Font Size"><i class="fas fa-plus"></i></button><button id="font_minus" title="Decrease Font Size"><i class="fas fa-minus"></i></button><button class="translate_chn_to_cht" id="translateLink" title="Switch Between Traditional Chinese And Simplified Chinese">繁</button><button id="darkmode" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" title="Setting"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="scroll_to_comment fas fa-comments"></i></a><button class="close" id="mobile-toc-button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script></body></html>

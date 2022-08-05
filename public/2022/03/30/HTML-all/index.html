@@ -1,0 +1,189 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HTML-总结 | Hexo</title><meta name="description" content="学习总结"><meta name="keywords" content="HTML"><meta name="author" content="xcl"><meta name="copyright" content="xcl"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://withstudy.github.io/2022/03/30/HTML-all/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="HTML-总结"><meta property="og:url" content="https://withstudy.github.io/2022/03/30/HTML-all/"><meta property="og:site_name" content="Hexo"><meta property="og:description" content="学习总结"><meta property="og:image" content="https://s2.loli.net/2022/03/30/6Nw1IhFGdrvc2ti.jpg"><meta property="article:published_time" content="2022-03-30T02:32:20.000Z"><meta property="article:modified_time" content="2022-03-30T03:33:10.989Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="prev" title="工作总结-项目优化" href="https://withstudy.github.io/2022/03/31/Work-optimize/"><link rel="next" title="42. 接雨水" href="https://withstudy.github.io/2022/03/17/Algorithm-42/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  bookmark: {
+    message_prev: 'Press',
+    message_next: 'to bookmark this page'
+  },
+  runtime_unit: 'days',
+  runtime: false,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true
+  }</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 6.1.0"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">37</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">16</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">17</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" target="_blank" rel="noopener" href="https://music.163.com/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://www.bilibili.com/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="http://120.24.39.145/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#HTML%E6%80%BB%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text">HTML总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E8%AF%AD%E4%B9%89%E5%8C%96"><span class="toc-number">1.0.1.</span> <span class="toc-text">一、语义化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81DOCTYPE%EF%BC%88%E6%96%87%E6%A1%A3%E7%B1%BB%E5%9E%8B%EF%BC%89"><span class="toc-number">1.0.2.</span> <span class="toc-text">二、DOCTYPE（文档类型）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81meta%E6%A0%87%E7%AD%BE"><span class="toc-number">1.0.3.</span> <span class="toc-text">三、meta标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81HTML5%E6%9B%B4%E6%96%B0"><span class="toc-number">1.0.4.</span> <span class="toc-text">四、HTML5更新</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E8%A1%8C%E5%86%85-%E5%9D%97%E7%BA%A7%E6%A0%87%E7%AD%BE"><span class="toc-number">1.0.5.</span> <span class="toc-text">五、行内&#x2F;块级标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%B8%90%E8%BF%9B%E5%A2%9E%E5%BC%BA%E5%92%8C%E4%BC%98%E9%9B%85%E9%99%8D%E7%BA%A7"><span class="toc-number">1.0.6.</span> <span class="toc-text">六、渐进增强和优雅降级</span></a></li></ol></li></ol></li></ol></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://s2.loli.net/2022/03/30/6Nw1IhFGdrvc2ti.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">Hexo</a></span><span class="pull-right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" target="_blank" rel="noopener" href="https://music.163.com/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://www.bilibili.com/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="http://120.24.39.145/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">HTML-总结</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="Created 2022-03-30 10:32:20"><i class="far fa-calendar-alt fa-fw"></i> Created 2022-03-30</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="Updated 2022-03-30 11:33:10"><i class="fas fa-history fa-fw"></i> Updated 2022-03-30</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fas fa-inbox fa-fw post-meta__icon"></i><a class="post-meta__categories" href="/categories/HTML/">HTML</a></span></div><div class="meta-secondline"> </div><div class="meta-thirdline"><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta__icon"></i><span>Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="HTML总结"><a href="#HTML总结" class="headerlink" title="HTML总结"></a>HTML总结</h1><h3 id="一、语义化"><a href="#一、语义化" class="headerlink" title="一、语义化"></a>一、语义化</h3><p><strong>语义化是指根据内容的结构化，选择合适的标签。</strong> 也就是用正确的标签做正确的事。</p>
+<p>优点：</p>
+<ul>
+<li>对机器友好，带有语义的文字表现力丰富，更适合搜索引擎的爬虫爬取有效的信息，有利于SEO</li>
+<li>对开发者友好，增强了代码的可读性，结构更加清晰，便于维护</li>
+</ul>
+<p>常见的与语义化标签</p>
+<ul>
+<li><strong>header</strong> ：头部</li>
+<li><strong>nav</strong> ：导航栏</li>
+<li><strong>main</strong> ：主要区域</li>
+<li><strong>section</strong> ：区块</li>
+<li><strong>article</strong> ：主要内容</li>
+<li><strong>aside</strong> ：侧边栏</li>
+<li><strong>footer</strong> ：底部</li>
+</ul>
+<h3 id="二、DOCTYPE（文档类型）"><a href="#二、DOCTYPE（文档类型）" class="headerlink" title="二、DOCTYPE（文档类型）"></a>二、DOCTYPE（文档类型）</h3><p>DOCTYPE是HTML5中的一种<strong>标准通用标记语言</strong>的文档类型声明，它的目的是为了告诉浏览器应该以什么样的文档类型定义来解析文档，<br>不同的渲染模式会影响浏览器对CSS代码甚至JavaScript脚本的解析。它必须声明在HTMl文档的第一行。</p>
+<p>浏览器渲染⻚⾯的两种模式（可通过document.compatMode获取，⽐如，语雀官⽹的⽂档类型是 CSS1Compat）：</p>
+<ul>
+<li><p>CSS1Compat：标准模式（Strick mode），默认模式，浏览器使⽤W3C的标准解析渲染⻚⾯。在 标准模式中，浏览器以其⽀持的最⾼标准呈现⻚⾯。 </p>
+</li>
+<li><p>BackCompat：怪异模式(混杂模式)(Quick mode)，浏览器使⽤⾃⼰的怪异模式解析渲染⻚⾯。在 怪异模式中，⻚⾯以⼀种⽐较宽松的向后兼容的⽅式显示。</p>
+</li>
+</ul>
+<h3 id="三、meta标签"><a href="#三、meta标签" class="headerlink" title="三、meta标签"></a>三、meta标签</h3><p><code>meta</code> 标签由 <code>name</code> 和 <code>content</code> 属性定义，⽤来<strong>描述⽹⻚⽂档的属性</strong>，⽐如⽹⻚的作者，⽹⻚描 述，关键词等，除了HTTP标准固定了⼀些 name 作为⼤家使⽤的共识，开发者还可以⾃定义name。</p>
+<p>常用的meta标签:</p>
+<ul>
+<li><code>charset</code>：用来描述HTMl文档的编码类型<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><code>keywords</code>：⻚⾯关键词<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;keywords&quot;</span> <span class="attr">content</span>=<span class="string">&quot;关键词&quot;</span> /&gt;</span> </span><br></pre></td></tr></table></figure></li>
+<li><code>description</code>：⻚⾯描述<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;description&quot;</span> <span class="attr">content</span>=<span class="string">&quot;⻚⾯描述内容&quot;</span> /&gt;</span> </span><br></pre></td></tr></table></figure></li>
+<li><code>refresh</code>⻚⾯重定向和刷新<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;refresh&quot;</span> <span class="attr">content</span>=<span class="string">&quot;0;url=&quot;</span> /&gt;</span> </span><br></pre></td></tr></table></figure></li>
+<li><code>viewport</code>：适配移动端，可以控制视⼝的⼤⼩和⽐例<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1, maximum- scale=1&quot;</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+其中， content 参数有以下⼏种： <blockquote>
+<p>width viewport ：宽度(数值/device-width)</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>height viewport ：⾼度(数值/device-height) </p>
+</blockquote>
+<blockquote>
+<p>initial-scale ：初始缩放⽐例 </p>
+</blockquote>
+<blockquote>
+<p>maximum-scale ：最⼤缩放⽐例 </p>
+</blockquote>
+<blockquote>
+<p>minimum-scale ：最⼩缩放⽐例 </p>
+</blockquote>
+<blockquote>
+<p>user-scalable ：是否允许⽤户缩放(yes/no）</p>
+</blockquote>
+<h3 id="四、HTML5更新"><a href="#四、HTML5更新" class="headerlink" title="四、HTML5更新"></a>四、HTML5更新</h3><ul>
+<li>（1）新增语义化标签：nav、header、footer、aside、section、article </li>
+<li>（2）⾳频、视频标签：audio、video </li>
+<li>（3）数据存储：localStorage、sessionStorage </li>
+<li>（4）canvas（画布）、Geolocation（地理定位）、websocket（通信协议） </li>
+<li>（5）input标签新增属性：placeholder、autocomplete、autofocus、required </li>
+<li>（6）history API：go、forward、back、pushstate</li>
+</ul>
+<h3 id="五、行内-块级标签"><a href="#五、行内-块级标签" class="headerlink" title="五、行内/块级标签"></a>五、行内/块级标签</h3><ul>
+<li>⾏内标签有： <code>a</code> <code>b</code> <code>span</code> <code>img</code> <code>input</code> <code>select</code> <code>strong</code> ； </li>
+<li>块级标签有： <code>div</code> <code>ul</code> <code>ol</code> <code>li</code> <code>dl</code> <code>dt</code> <code>dd</code> <code>h1</code> <code>h2</code> <code>h3</code> <code>h4</code> <code>h5</code> <code>h6</code> <code>p</code> ；</li>
+<li>空标签有：<code>br</code> <code>hr</code>  <code>img</code>  <code>input</code>  <code>link</code>  <code>meta</code> ；</li>
+</ul>
+<p>行内标签与块级标签的区别：</p>
+<ul>
+<li>块级标签独占一行，并且会自动换行，而行内标签会在一条水平线上排列</li>
+<li>行内标签不能设置宽高，margin、padding上下无效</li>
+<li>块级标签可以包含任何标签，而行内标签只能包含文本或行内标签</li>
+</ul>
+<h3 id="六、渐进增强和优雅降级"><a href="#六、渐进增强和优雅降级" class="headerlink" title="六、渐进增强和优雅降级"></a>六、渐进增强和优雅降级</h3><ol>
+<li>渐进增强（progressive enhancement）：主要是针对低版本的浏览器进⾏⻚⾯重构，保证基本 的功能情况下，再针对⾼级浏览器进⾏效果、交互等⽅⾯的改进和追加功能，以达到更好的⽤户体验。 </li>
+<li>优雅降级 graceful degradation： ⼀开始就构建完整的功能，然后再针对低版本的浏览器进⾏兼 容。</li>
+</ol>
+<p>两者区别： </p>
+<ul>
+<li>优雅降级是从复杂的现状开始的，并试图减少⽤户体验的供给；⽽渐进增强是从⼀个⾮常基础的， 能够起作⽤的版本开始的，并在此基础上不断扩充，以适应未来环境的需要； </li>
+<li>降级（功能衰竭）意味着往回看，⽽渐进增强则意味着往前看，同时保证其根基处于安全地带。</li>
+</ul>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">xcl</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://withstudy.github.io/2022/03/30/HTML-all/">https://withstudy.github.io/2022/03/30/HTML-all/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/HTML/">HTML</a></div><div class="post_share"><div class="social-share" data-image="https://s2.loli.net/2022/08/05/JPaEXoMlbQzASxy.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/03/31/Work-optimize/"><img class="prev-cover" data-src="https://s2.loli.net/2022/03/31/oTNACnmX6yefaLE.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">工作总结-项目优化</div></div></a></div><div class="next-post pull-right"><a href="/2022/03/17/Algorithm-42/"><img class="next-cover" data-src="https://s2.loli.net/2022/02/18/TBbHCRsA2L59zng.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">42. 接雨水</div></div></a></div></nav><hr><div id="post-comment"><div class="comment_headling"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div><div id="disqus_thread"></div><script>var disqus_config = function () {
+  this.page.url = 'https://withstudy.github.io/2022/03/30/HTML-all/';
+  this.page.identifier = '2022/03/30/HTML-all/';
+  this.page.title = 'HTML-总结';
+};
+(function() { 
+  var d = document, s = d.createElement('script');
+  s.src = 'https://.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+})();
+</script></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By xcl</div><div class="framework-info"><span>Driven </span><a target="_blank" rel="noopener" href="https://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly"><span>Butterfly</span></a></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><button id="readmode" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="font_plus" title="Increase Font Size"><i class="fas fa-plus"></i></button><button id="font_minus" title="Decrease Font Size"><i class="fas fa-minus"></i></button><button class="translate_chn_to_cht" id="translateLink" title="Switch Between Traditional Chinese And Simplified Chinese">繁</button><button id="darkmode" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" title="Setting"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="scroll_to_comment fas fa-comments"></i></a><button class="close" id="mobile-toc-button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script></body></html>
