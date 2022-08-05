@@ -1,4 +1,12 @@
- ## hexo+github 搭建静态博客
+ ---
+title: hexo+github 搭建静态博客
+date: 2021-11-24 11:06:32
+categories: hexo
+tags: [hexo]
+description: 学习总结
+---
+
+## hexo+github 搭建静态博客
 
 ### 1、准备工作
 
