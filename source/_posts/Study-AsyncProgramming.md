@@ -1,0 +1,162 @@
+---
+title: 异步编程
+date: 2022-08-06 19:55:56
+categories: Javascript
+tags: [Javascript]
+description: 学习总结
+cover: https://s2.loli.net/2022/08/06/oXyKITrZ6xC3Fiq.png
+---
+
+# 异步编程
+
+## 一、Callback
+
+Callback是传统的一种异步解决方案
+
+通过在执行异步的时候，传入一个callback，等到异步执行返回结果之后，在调用callback
+
+例子：
+```js
+const fs = require('fs')
+
+function ajax(url,callback){
+    try {
+        const res = fs.readFile(url,'utf-8',callback)
+    } catch (err){
+        callback(new Error(err))
+    }
+}
+
+const callback = function (err,res){
+    console.log(res)
+    ajax('./posts.json',(err,res) => {
+        console.log(res)
+    })
+}
+ajax('./user.json',callback)
+```
+
+缺点：
+
+当请求之间存在依赖的时候，callback层级过深，会产生回调地狱
+
+## 二、Promise
+
+Promise是ES6新增的一个异步解决方案
+
+Promise是一个构造函数，接受一个函数并且同步调用。其内部维护了一个状态，初始化是为**等待**状态，在调用传入的函数时，其向函数注入两个函数，第一个可以将状态更改为**成功状态**，第二个更改为**失败状态**
+。Promise会根据状态执行对应的回调，其中成功会执行then中的第一个参数，失败会只想then的第二个参数或者catch的参数
+
+例子：
+```js
+const fs = require('fs')
+
+function ajax(url){
+    return new Promise((resolve,reject) => {
+        try {
+            const res = fs.readFileSync(url,'utf-8')
+            resolve(res)
+        } catch (err){
+            reject(new Error(err))
+        }
+    })
+}
+
+ajax('./user.json')
+    .then(res => {
+        console.log(res)
+        return ajax('./posts.json')
+    })
+    .then(res => {
+        console.log(res)
+    })
+    .catch(err => {
+        console.log(err)
+    })
+```
+
+优点：
+支持链式调用，解决回调地狱的问题
+
+## 三、Generator
+
+generator（生成器））是ES6标准引入的,是一个特殊的函数,or由function *定义（注意多出的 *号），并且，除了return语句，还可以用yield返回多次。
+
+执行generator函数会返回一个generator对象，并不会执行函数
+
+通过next()方法会执行generator的代码，然后，每次遇到yield x;
+就返回一个对象{value: x, done: true/false}，然后“暂停”。
+返回的value就是yield的返回值，done表示这个generator是否已经执行结束了。
+如果done为true，则value就是return的返回值。
+当执行到done为true时，这个generator对象就已经全部执行完毕，不要再继续调用next()了。
+
+例子：
+```js
+const fs = require('fs')
+
+function ajax(url){
+    return new Promise((resolve,reject) => {
+        try {
+            const res = fs.readFileSync(url,'utf-8')
+            resolve(res)
+        } catch (err){
+            reject(new Error(err))
+        }
+    })
+}
+
+function *generator(){
+    yield ajax('./user.json')//注意：ajax返回的是Promise对象
+
+    yield ajax('./posts.json')
+}
+
+const g = generator()
+
+g.next().value.then(res => {
+    console.log(res)
+    return g.next()
+})
+.then(res => {
+    console.log(res)
+})
+```
+
+## 四、a、Async/Await
+
+async 是一个修饰符，async 定义的函数会默认的返回一个Promise对象resolve的值，
+因此对async函数可以直接进行then操作,返回的值即为then方法的传入函数
+
+wait 关键字 只能放在 async 函数内部， await关键字的作用 就是获取 Promise中返回的内容，
+获取的是Promise函数中resolve或者reject的值
+
+例子：
+```js
+const fs = require('fs')
+
+async function ajax(url){
+    return new Promise((resolve,reject) => {
+        try {
+            fs.readFile(url,'utf-8',
+                (err,res) => {
+                    if(err) reject(err)
+
+                    resolve(res)
+                }
+            )
+        } catch (err){
+            reject(new Error(err))
+        }
+    })
+}
+
+async function getData(){
+    const users = await ajax('./user.json')
+    console.log(users)
+    const posts = await ajax('./posts.json').then(res => res)
+    console.log(posts)
+}
+
+getData()
+```
+
