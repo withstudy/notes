@@ -1,0 +1,23 @@
+{
+  "name": "notes",
+  "version": "1.0.0",
+  "description": "\"# notes\"",
+  "main": "index.js",
+  "scripts": {
+    "flow": "flow"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://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@github.com/withstudy/notes.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/withstudy/notes/issues"
+  },
+  "homepage": "https://github.com/withstudy/notes#readme",
+  "devDependencies": {
+    "flow-bin": "^0.184.0"
+  }
+}
