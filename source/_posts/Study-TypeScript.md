@@ -1,6 +1,6 @@
 ---
 title: TypeScript基础
-date: 2022-03-16 16:27:27
+date: 2022-08-16 17:46:03
 categories: TypeScript
 tags: [TypeScript]
 description: 学习总结
