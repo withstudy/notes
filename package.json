@@ -4,7 +4,8 @@
   "description": "\"# notes\"",
   "main": "index.js",
   "scripts": {
-    "flow": "flow"
+    "flow": "flow",
+    "tsc": "tsc"
   },
   "repository": {
     "type": "git",
@@ -19,5 +20,8 @@
   "homepage": "https://github.com/withstudy/notes#readme",
   "devDependencies": {
     "flow-bin": "^0.184.0"
+  },
+  "dependencies": {
+    "typescript": "^4.7.4"
   }
 }
