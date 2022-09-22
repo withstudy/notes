@@ -1,0 +1,9 @@
+body{
+    background: #2c3e50;
+    padding: 0;
+    margin: 0;
+}
+/*vue*/
+#app{
+    height: 100%;
+}
