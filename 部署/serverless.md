@@ -42,6 +42,15 @@ npm install vercel -g
     - package.json
 ```
 
+```js
+// hello.js
+export default function handler(req, res) {
+    const { name = 'World' } = req.query;
+    return res.send(`Hello ${name}!`);
+}
+
+```
+
 3. 运行项目
 
 开发环境运行
