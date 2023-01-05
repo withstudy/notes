@@ -15,6 +15,8 @@ function fn(nums,target){
     // 排序数组
     nums.sort((a,b) => a-b);
     for(let i=0;i<len-3;i++){
+        // 剪枝
+        if(target > 0 && nums[i] > 0 && nums[i] > target) break;
         // 去重第一个数
         if(i>0 && nums[i] === nums[i-1]) continue;
         for(let j=i+1;j<len-2;j++){
@@ -49,3 +51,4 @@ function fn(nums,target){
 }
 
 console.log(fn([1, 0, -1, 0, -2, 2],0))
+// console.log(fn([2,1,4,5],0))
