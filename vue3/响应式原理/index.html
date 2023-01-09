@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <button id="increment">increment</button>
+  <script type="module">
+    import {effect,reactive} from './index.js'
+    const obj = reactive({a:1})
+    effect(() => {console.log(obj.a)})
+    // increment.onclick = () => {
+    //   obj.a += 1
+    // }
+    obj.a ++
+    obj.a ++
+    console.log('结束了')
+  </script>
+</body>
+</html>

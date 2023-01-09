@@ -38,10 +38,59 @@ export function reactive (target) {
 }
 
 let activeEffect = null
-export function effect (callback) {
-  activeEffect = callback
-  callback() // 访问响应式对象属性，去收集依赖
-  activeEffect = null
+// 记录activeEffect栈，防止嵌套调用时activeEffect混乱，添加副作用时不正确
+const activeEffectStack = []
+const baseOptions = {scheduler,lazy:false}
+export function effect (callback,options = {}) {
+  options = Object.assign(baseOptions,options)
+  function effectFn(){
+    // 每次执行时，都清空callback已经存在的依赖副作用列表，防止分支切换导致的副作用遗留
+    cleanup(effectFn)
+    activeEffect = effectFn
+    // effectFn入栈
+    activeEffectStack.push(effectFn)
+    const res = callback() // 访问响应式对象属性，去收集依赖
+    // 这个时候effectFn已经成功添加了，从栈里移除
+    activeEffectStack.pop()
+    // 更新当前副作用函数
+    activeEffect = activeEffectStack[activeEffectStack.length - 1]
+    return res;
+  }
+  // deps用力啊存储所有与该副作用函数相关联的依赖集合
+  effectFn.deps = []
+  effectFn.options = options
+  // 第一次是否执行
+  if(!options.lazy){
+    effectFn()
+  }
+}
+
+// 调度器
+function scheduler(effect){
+  jobQueue.add(effect)
+  flushJob()
+}
+// 任务队列
+const jobQueue = new Set()
+// 是否正在刷新队列
+let isFlushing = false
+function flushJob(){
+  if(isFlushing)return
+  isFlushing = true
+  Promise.resolve().then(() => {
+    jobQueue.forEach(job => job())
+  }).finally(() => [
+      isFlushing = false
+  ])
+}
+
+
+function cleanup(effectFn){
+  for(let i=0;i<effectFn.deps.length;i++){
+    const deps = effectFn.deps[i]
+    deps.delete(effectFn)
+  }
+  effectFn.deps.length = 0
 }
 
 let targetMap = new WeakMap()
@@ -57,17 +106,29 @@ export function track (target, key) {
     depsMap.set(key, (dep = new Set()))
   }
   dep.add(activeEffect)
+  activeEffect.deps.push(dep)
 }
 
 export function trigger (target, key) {
   const depsMap = targetMap.get(target)
   if (!depsMap) return
   const dep = depsMap.get(key)
-  if (dep) {
+  // 遍历使用新的set，防止cleanup删除副作用后，副作用执行时又添加了副作用，导致无限执行
+  const depsToRun = new Set()
+  if(dep){
     dep.forEach(effect => {
-      effect()
+      // 避免无线递归调用
+      if(effect !== activeEffect){
+        depsToRun.add(effect)
+      }
     })
   }
+  depsToRun.forEach(effect => {
+    // 调度执行副作用函数
+    if(effect.options.scheduler){
+      effect.options.scheduler(effect)
+    }
+  })
 }
 
 export function ref (raw) {
