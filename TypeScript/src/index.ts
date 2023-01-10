@@ -143,3 +143,6 @@ function createArray<T>(length:number,value:T):T[]{
 
 const numbers = createArray<number>(3,100) // [100,100,100]
 const strings = createArray<string>(3,'100') // ['100','100','100']
+
+const iObj:obj = {value: '1'}
+const nObj: BB.PP = {value: 1}
