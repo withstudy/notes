@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/withstudy/notes#readme",
   "devDependencies": {
+    "@vue/reactivity": "^3.2.45",
     "flow-bin": "^0.184.0"
   },
   "dependencies": {
