@@ -1,0 +1,9 @@
+/public/
+/dist/
+/node_modules/
+*.png
+*.jpg
+*.jpeg
+*.eot
+*.ttf
+*.woff
