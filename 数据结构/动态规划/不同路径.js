@@ -29,6 +29,7 @@ function fn(m,n) {
             dp[i][j] = dp[i][j - 1] + dp[i - 1][j]
         }
     }
+    console.table(dp)
     return dp[m - 1][n - 1]
 }
 
