@@ -1,9 +1,4 @@
-/**
- * Created by wyw on 2019/3/28.
- */
-/**
- * Created by wyw on 2019/3/28.
- */
+
  class Palette {
     constructor(canvas, {drawType = 'line', drawColor = 'rgba(19, 206, 102, 1)', lineWidth = 5, sides = 3, allowCallback, moveCallback}) {
         this.canvas = canvas;
