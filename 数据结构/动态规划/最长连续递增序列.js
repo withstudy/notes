@@ -16,7 +16,7 @@
 function fn(nums) {
     const len = nums.length, dp = new Array(len).fill(1)
     let res = 1
-    for(let i = 0; i < len; i ++){
+    for(let i = 1; i < len; i ++){
         if(nums[i] > nums[i - 1]){
             dp[i] = dp[i - 1] + 1
         }
