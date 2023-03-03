@@ -20,7 +20,7 @@ bable自身只支持js语法的转换，像Promise，Array.included等es2015新�
 >
 > 在 babel7.4.0 之前，我们可以直接安装 @babel/polyfill 来转换 API，但是在 7.4.0 之后的 Babel 版本，就会提示让我们分开引入 core-js/stable(默认安装3.x)和 regenerator-runtime/runtime
 
-* regenertor-runtime/runtime: 
+* regenertor-runtime/runtime: 转换生成器和async/await
 
 ### 使用方式
 
@@ -98,6 +98,7 @@ module.exports = {
 * useBuiltIns
 
 决定了 @babel/preset-env 该如何处理 polyfill
+
     * false
     默认值，不会按需加载polyfill
 
@@ -115,7 +116,7 @@ module.exports = {
 ```js
 module.exports = {
   presets: [["@babel/preset-env", {
-  	useBuiltIns: "usage",
+  	useBuiltIns: "usage"
   ]],
   plugins: []
 }
@@ -126,9 +127,9 @@ useBuiltIn 设置为 usage 或者 entry 时,需要使用corejs@3
 ```js
 module.exports = {
   presets: [["@babel/preset-env", {
-  	useBuiltIns: "usage",
-    corejs：3
-  ]],
+      useBuiltIns: "usage",
+      corejs: 3
+  }],
   plugins: []
 }
 ```
