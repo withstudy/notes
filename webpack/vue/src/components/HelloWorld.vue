@@ -1,8 +1,8 @@
 <template>
-    <h1 id="hello">hello world</h1>
+    <h1 id="hello" >hello world</h1>
     <img src="../assets/images/zhuchiren.png"/>
-    <span>{{ num }}</span>
-    <button @click="handleAdd">add</button>
+    <span class="text-sky-500">{{ num }}</span>
+    <button @click="handleAdd" class="bg-red-50">add</button>
 </template>
 
 <script setup>

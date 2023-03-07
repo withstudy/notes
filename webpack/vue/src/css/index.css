@@ -3,3 +3,7 @@ body{
     will-change: contents;
     transform: scale(1);
 }
+
+@tailwind base;
+@taileind components;
+@tailwind utilities;
