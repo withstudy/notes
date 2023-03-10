@@ -11,14 +11,16 @@ Husky 可以防止错误的 git commit ， git push
 npm install husky -D
 ```
 
-## 配置
+## 使用
 
-`.huskyrc.js`
+* 创建.husky文件夹
 
-```js
-module.exports = {
-    "hooks": {
-        "pre-commit": "commitlint --edit $HUSKY_GIT_PARAMS", // 提交的时候 进行eslint检查
-    }
-}
+```shell
+npx husky install
+```
+
+* 添加hooks
+
+```shell
+npx husky add .husky/commit-msg 'npx --no-install commitlint --edit $1'
 ```
