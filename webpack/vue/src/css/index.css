@@ -1,9 +1,13 @@
-body{
+body {
     font-size: 20px;
     will-change: contents;
     transform: scale(1);
+    display: flex;
+    border: 1px solid red;
+    background: sky;
 }
-
+/* stylelint-disable */
 @tailwind base;
 @taileind components;
 @tailwind utilities;
+/* stylelint-enable */

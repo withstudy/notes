@@ -4,10 +4,12 @@
 
 <script>
 export default {
-    name: "IndexComponent"
+    name: 'IndexComponent'
 }
 </script>
 
-<style scoped>
-
+<style scoped lang="less">
+h1 {
+    color: antiquewhite;
+}
 </style>

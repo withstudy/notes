@@ -14,4 +14,10 @@
 import HelloWorld from './components/HelloWorld'
 </script>
 
-<style scoped></style>
+<style scoped lang="less">
+div {
+    div {
+        border: 1px solid blue;
+    }
+}
+</style>
