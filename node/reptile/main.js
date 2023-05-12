@@ -11,7 +11,6 @@ swig.setDefaults({cache:false})
 
 app.get('/',(req,res) => {
     const url = req.query.url
-    console.log(url)
     if(url){
         reptile(url,(list) => {
             res.render('index',{list})

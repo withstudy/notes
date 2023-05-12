@@ -8,11 +8,12 @@ module.exports = function reptile(url, cb) {
                 const $ = cheerio.load(res.text)
                 $('img').each((idx, el) => {
                     const $el = $(el)
-                    console.log($el.attr('src'))
-                    list.push({
-                        src: $el.attr('src'),
-                        alt: $el.attr('alt'),
-                    })
+                    if ($el.attr('src')) {
+                        list.push({
+                            src: $el.attr('src'),
+                            alt: $el.attr('alt'),
+                        })
+                    }
                 })
             }
             cb && cb(list)
