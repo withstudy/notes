@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reptile</title>
+    <style>
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        img {
+            width: 500px;
+            height: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        {% for item in list %}
+        <img alt="{{item.alt}}" data-src="{{item.src}}" />
+        {% endfor %}
+    </div>
+    <script>
+        console.log('onload')
+            const io = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        const target = e.target
+                        target.src = target.dataset.src
+                        io.unobserve(target)
+                    }
+                })
+            }, {
+                threshold: 0
+            })
+
+            const imgs = document.querySelectorAll('img[data-src]')
+            console.log(imgs)
+            imgs.forEach(img => {
+                io.observe(img)
+            })
+    </script>
+</body>
+
+</html>
