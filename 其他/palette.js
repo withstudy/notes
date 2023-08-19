@@ -21,7 +21,13 @@
         this.bindMousemove = function () {}; // 解决 eventlistener 不能bind
         this.bindMousedown = function () {}; // 解决 eventlistener 不能bind
         this.bindMouseup = function () {}; // 解决 eventlistener 不能bind
+        this.bindTouchstart = function () {}; 
+        this.bindTouchmove = function () {}; 
+        this.bindTouchend = function () {}; 
+        this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         this.init();
+        this.isCando = false;
+        console.log(this.isMobile)
     }
     init() {
         this.paint.fillStyle = '#fff';
@@ -30,10 +36,20 @@
         this.bindMousemove = this.onmousemove.bind(this); // 解决 eventlistener 不能bind
         this.bindMousedown = this.onmousedown.bind(this);
         this.bindMouseup = this.onmouseup.bind(this);
-        this.canvas.addEventListener('mousedown', this.bindMousedown);
-        document.addEventListener('mouseup', this.bindMouseup);
+        this.bindTouchstart = this.touchstart.bind(this); // 解决 eventlistener 不能bind
+        this.bindTouchmove = this.touchmove.bind(this);
+        this.bindTouchend = this.touchend.bind(this);
+        if(!this.isMobile){
+            this.canvas.addEventListener('mousedown', this.bindMousedown);
+            document.addEventListener('mouseup', this.bindMouseup);
+        } else {
+            this.canvas.addEventListener('touchstart', this.bindTouchstart);
+            document.addEventListener('touchend', this.bindTouchend);
+        }
+        
     }
     onmousedown(e) { // 鼠标按下
+        if(!this.isCando) return
         this.isClickCanvas = true;
         this.x = e.offsetX;
         this.y = e.offsetY;
@@ -53,13 +69,37 @@
             this.paint.putImageData(this.imgData[this.index], 0, 0);
         }
     }
-    onmousemove(e) { // 鼠标移动
+    touchstart(e) {
+        e.preventDefault();
+        if(!this.isCando) return
+        this.isClickCanvas = true;
+        this.x = e.touches[0].clientX;
+        this.y = e.touches[0].clientY;
+        this.last = [this.x, this.y];
+        this.canvas.addEventListener('touchmove', this.bindTouchmove);
+    }
+    touchmove(e) {
+        e.preventDefault();
         this.isMoveCanvas = true;
-        let endx = e.offsetX;
-        let endy = e.offsetY;
+        let endx = e.touches[0].clientX;
+        let endy = e.touches[0].clientY;
         let width = endx - this.x;
         let height = endy - this.y;
         let now = [endx, endy]; // 当前移动到的位置
+        this.switchTypeDraw(now, width, height)
+    }
+    touchend() {
+        if (this.isClickCanvas) {
+            this.isClickCanvas = false;
+            this.canvas.removeEventListener('touchmove', this.bindTouchmove);
+            if (this.isMoveCanvas) { // 鼠标没有移动不保存
+                this.isMoveCanvas = false;
+                this.moveCallback('gatherImage');
+                this.gatherImage();
+            }
+        }
+    }
+    switchTypeDraw(now, width, height){
         switch (this.drawType) {
             case 'line' : {
                 let params = [this.last, now, this.lineWidth, this.drawColor];
@@ -92,6 +132,15 @@
             }
                 break;
         }
+    }
+    onmousemove(e) { // 鼠标移动
+        this.isMoveCanvas = true;
+        let endx = e.offsetX;
+        let endy = e.offsetY;
+        let width = endx - this.x;
+        let height = endy - this.y;
+        let now = [endx, endy]; // 当前移动到的位置
+        this.switchTypeDraw(now, width, height)
     }
     onmouseup() { // 鼠标抬起
         if (this.isClickCanvas) {
@@ -195,4 +244,4 @@
     }
 }
 
-module.exports=Palette;
+

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Draggable PDF with pdf.js</title>
+  <style>
+    #dragContainer {
+      position: relative;
+    }
+
+    #pdfCanvas {
+      border: 1px solid black;
+      cursor: move;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Draggable PDF with pdf.js</h1>
+  <button id="next"> >> </button>
+  <button id="last"> << </button>
+
+  <button id="magnify"> + </button>
+  <button id="reduce"> - </button>
+
+  <button id="clear">clear</button>
+  <button id="openpen">开启画笔</button>
+  <button id="closepen">关闭画笔</button>
+  <div id="dragContainer">
+    <canvas id="pdfCanvas" width="500" height="500"></canvas>
+  </div>
+
+  <input type="file" id="fileInput" accept=".pdf">
+
+  <video id="toVideo" controls autoplay></video>
+
+  <script src="./pdf.js"></script>
+  <script src="./pdf.viewer.js"></script>
+
+  <script src="./palette.js"></script>
+  <script>
+    var canvas = document.getElementById('pdfCanvas');
+    
+    var dragContainer = document.getElementById('dragContainer');
+
+    var pdfDoc = null;
+    var currentPage = 1;
+    var scale = 1;
+    console.log(pdfjsLib)
+    var isDragging = false;
+    var offsetX = 0, offsetY = 0;
+    var dragStartX, dragStartY;
+    const p = new Palette(canvas, {})
+    var ctx = p.paint
+    function renderPage() {
+      var pageNumber = currentPage
+      pdfDoc.getPage(pageNumber).then(function(page) {
+        var viewport = page.getViewport({ scale, offsetX, offsetY });
+        // canvas.height = viewport.height;
+        // canvas.width = viewport.width;
+
+        var renderContext = {
+          canvasContext: ctx,
+          viewport: viewport
+        };
+
+        page.render(renderContext);
+      });
+    }
+
+    function startDragging(e) {
+      if(p.isCando) return
+      isDragging = true;
+      dragStartX = e.touches[0].clientX;
+      dragStartY = e.touches[0].clientY;
+      // offsetX = canvas.offsetLeft - dragContainer.offsetLeft;
+      // offsetY = canvas.offsetTop - dragContainer.offsetTop;
+    }
+
+    function handledrag(e) {
+      if (isDragging) {
+        var newX = e.touches[0].clientX;
+        var newY = e.touches[0].clientY;
+        console.log('x:',offsetX , newX , dragStartX ,(dragContainer.offsetLeft));
+        console.log('y:',offsetY, newY , dragStartY ,(dragContainer.offsetTop));
+        offsetX = offsetX + newX - dragStartX;
+        offsetY = offsetY + newY - dragStartY;
+
+        renderPage()
+        dragStartX = newX
+        dragStartY = newY
+      }
+    }
+    var flag = false
+    var drag = (e) => {
+      if(flag) return
+      handledrag(e)
+      flag = true
+      setTimeout(()=>{flag = false},100)
+    }
+
+    function stopDragging(e) {
+      
+      isDragging = false;
+      console.log(offsetX, offsetY)
+      // renderPage()
+    }
+
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    if(isMobile){
+      canvas.addEventListener('touchstart', startDragging);
+      canvas.addEventListener('touchmove', drag);
+      canvas.addEventListener('touchend', stopDragging);
+    } else {
+      canvas.addEventListener('mousedown', startDragging);
+      canvas.addEventListener('mousemove', drag);
+      canvas.addEventListener('mouseup', stopDragging);
+    }
+
+    var viewer = null
+    document.getElementById('fileInput').addEventListener('change', function(event) {
+      var file = event.target.files[0];
+      var fileReader = new FileReader();
+
+      fileReader.onload = function() {
+        var typedarray = new Uint8Array(this.result);
+        console.log(typedarray)
+
+        pdfjsLib.getDocument(typedarray).promise.then(function(pdf) {
+          pdfDoc = pdf;
+          renderPage();
+          
+        });
+      }
+
+      fileReader.readAsArrayBuffer(file);
+    });
+
+    // var m = new MediaStream([canvas.captureStream(25).getVideoTracks()[0]])
+    console.log(canvas.captureStream(25))
+    // const video = document.createElement('video')
+      toVideo.srcObject = new MediaStream(canvas.captureStream())
+      // document.body.appendChild(video)
+
+    next.onclick = () => {
+
+      currentPage ++;
+      renderPage()
+    }
+
+    last.onclick = () => {
+      currentPage --;
+      renderPage()
+    }
+
+    clear.onclick = () => {
+      // p.reSetImage();
+      renderPage()
+    }
+
+    magnify.onclick = () => {
+      scale += 0.5
+      renderPage()
+    }
+
+    reduce.onclick = () => {
+      scale -= 0.5
+      renderPage()
+    }
+
+    openpen.onclick = () => {
+      p.isCando = true
+    }
+
+    closepen.onclick = () => {
+      p.isCando = false
+    }
+
+    // pdfjsViewer.addEventListener('pageinit', function(e) {console.log(e)})
+  </script>
+</body>
+
+</html>
