@@ -1,11 +1,11 @@
-# `module-b`
+# `date`
 
 > TODO: description
 
 ## Usage
 
 ```
-const moduleB = require('module-b');
+const date = require('date');
 
 // TODO: DEMONSTRATE API
 ```

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Canvas图片操作</title>
+  <style>
+    #canvas {
+      border: 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+  <input type="file" id="fileInput">
+  <br>
+  <canvas id="canvas" width="1000" height="1000"></canvas>
+
+  <script>
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
+    var img = new Image();
+    var scale = 1; // 初始缩放比例
+    var originX = 0; // 图片左上角在画布上的水平偏移量
+    var originY = 0; // 图片左上角在画布上的垂直偏移量
+    var startDistance = 0; // 触摸开始时的两指之间的距离
+    var isDragging = false; // 是否正在拖拽图片
+
+    // 选择文件时加载图片并绘制到画布上
+    document.getElementById('fileInput').addEventListener('change', function(e) {
+      var file = e.target.files[0];
+      var reader = new FileReader();
+
+      reader.onload = function(event) {
+        img.onload = function() {
+          resetImage();
+        };
+        img.src = event.target.result;
+      };
+
+      reader.readAsDataURL(file);
+    });
+
+    // 重置图片位置和缩放比例
+    function resetImage() {
+      scale = 1;
+      originX = 0;
+      originY = 0;
+      isDragging = false;
+
+      // 将画布清空
+      context.clearRect(0, 0, canvas.width, canvas.height);
+
+      // 计算图片绘制尺寸
+      var drawWidth = img.width * scale;
+      var drawHeight = img.height * scale;
+
+      // 将图片绘制到画布上
+      context.drawImage(img, originX, originY, drawWidth, drawHeight);
+
+      // 监听触摸事件
+      canvas.addEventListener('touchstart', touchStartHandler);
+      canvas.addEventListener('touchmove', touchMoveHandler);
+      canvas.addEventListener('touchend', touchEndHandler);
+    }
+
+    // 触摸开始事件处理函数
+    function touchStartHandler(event) {
+      event.preventDefault();
+
+      if (event.touches.length === 2) {
+        // 记录两指之间的初始距离
+        startDistance = getDistance(event.touches[0], event.touches[1]);
+      } else if (event.touches.length === 1) {
+        // 开始拖拽图片
+        isDragging = true;
+      }
+    }
+
+    // 触摸移动事件处理函数
+    function touchMoveHandler(event) {
+      event.preventDefault();
+
+      if (event.touches.length === 2) {
+        // 计算当前两指之间的距离
+        var currentDistance = getDistance(event.touches[0], event.touches[1]);
+
+        // 计算缩放比例的变化量
+        var deltaScale = currentDistance / startDistance;
+
+        // 更新缩放比例
+        var newScale = scale * deltaScale;
+
+        // 缩放的最大限制为原始图片的两倍
+        if (newScale <= 2) {
+          scale = newScale;
+
+          // 重新计算并更新图片位置
+          var offsetX = (canvas.width - img.width * scale) / 2;
+          var offsetY = (canvas.height - img.height * scale) / 2;
+          originX += offsetX;
+          originY += offsetY;
+
+          // 重新绘制画布
+          context.clearRect(0, 0, canvas.width, canvas.height);
+          context.drawImage(img, originX, originY, img.width * scale, img.height * scale);
+
+          // 更新初始距离
+          startDistance = currentDistance;
+        }
+      } else if (event.touches.length === 1 && isDragging) {
+        // 移动图片
+        var touch = event.touches[0];
+        var offsetX = touch.pageX - touch.target.offsetLeft;
+        var offsetY = touch.pageY - touch.target.offsetTop;
+        originX = offsetX - touch.clientX + originX;
+        originY = offsetY - touch.clientY + originY;
+
+        // 图片移动的边界限制
+        var maxOriginX = (img.width * scale - canvas.width) / 2;
+        var maxOriginY = (img.height * scale - canvas.height) / 2;
+
+        originX = Math.max(-maxOriginX, Math.min(maxOriginX, originX));
+        originY = Math.max(-maxOriginY, Math.min(maxOriginY, originY));
+
+        // 清空画布并重新绘制图片
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.drawImage(img, originX, originY, img.width * scale, img.height * scale);
+      }
+    }
+
+    // 触摸结束事件处理函数
+    function touchEndHandler(event) {
+      event.preventDefault();
+
+      // 结束拖拽图片
+      isDragging = false;
+    }
+
+    // 计算两点之间的距离
+    function getDistance(point1, point2) {
+      var deltaX = point1.pageX - point2.pageX;
+      var deltaY = point1.pageY - point2.pageY;
+      return Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+    }
+  </script>
+</body>
+</html>

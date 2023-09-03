@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Loading Animation</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="200" height="200"></canvas>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        const circleRadius = 20;
+        const circleCount = 8;
+        const rotationSpeed = 0.03;
+
+        let rotationAngle = 0;
+        let index = 1
+        // const 
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+
+            for (let i = 0; i < circleCount; i++) {
+                const angle = (i / circleCount) * 2 * Math.PI + rotationAngle;
+                // const angle = 60;
+                const x = centerX + Math.cos(angle) * (canvas.width / 3);
+                const y = centerY + Math.sin(angle) * (canvas.height / 3);
+
+                ctx.beginPath();
+                ctx.arc(x, y, i + 10, 0, 2 * Math.PI);
+                ctx.fillStyle = '#000000';
+                ctx.fill();
+            }
+            rotationAngle += rotationSpeed;
+
+            requestAnimationFrame(draw);
+        }
+
+        draw();
+    </script>
+</body>
+</html>
