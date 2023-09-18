@@ -41,11 +41,12 @@ jobs:
           cache: npm # or pnpm / yarn
       - name: Setup Pages
         uses: actions/configure-pages@v3
+      - name: Cd Dir
+        run: cd docs
       - name: Install dependencies
         run: npm ci # or pnpm install / yarn install / bun install
       - name: Build with VitePress
         run: |
-          cd docs
           npm run docs:build
           touch docs/.vitepress/dist/.nojekyll
       - name: Upload artifact
