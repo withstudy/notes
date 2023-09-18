@@ -1,11 +1,11 @@
-# `module-a`
+# `date-format`
 
 > TODO: description
 
 ## Usage
 
 ```
-const moduleA = require('module-a');
+const dateFormat = require('date-format');
 
 // TODO: DEMONSTRATE API
 ```

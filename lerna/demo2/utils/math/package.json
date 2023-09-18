@@ -1,0 +1,30 @@
+{
+  "name": "math",
+  "version": "0.0.0",
+  "description": "Now I’m the model of a modern major general / The venerated Virginian veteran whose men are all / Lining up, to put me up on a pedestal / Writin’ letters to relatives / Embellishin’ my elegance and eloquence / But the elephant is in the room / The truth is in ya face when ya hear the British cannons go / BOOM",
+  "keywords": [],
+  "author": "xhb <1484389028@qq.com>",
+  "license": "ISC",
+  "main": "lib/math.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmmirror.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://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@github.com/withstudy/notes.git"
+  },
+  "scripts": {
+    "test": "node ./__tests__/math.test.js"
+  },
+  "bugs": {
+    "url": "https://github.com/withstudy/notes/issues"
+  },
+  "homepage": "https://github.com/withstudy/notes#readme"
+}
