@@ -57,6 +57,8 @@ https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/current/update-center.json
 
 参考：
 
+[gitee](https://blog.csdn.net/weixin_46034375/article/details/127572547)
+
 [持续集成与持续部署](https://www.jianshu.com/p/6bcb2853fae2)
 [在服务器部署Jenkins同步github代码](https://blog.csdn.net/qq_45339526/article/details/130636111)
 [jenkins + GitHub 手把手教你实现项目及自动化部署](https://www.bilibili.com/read/cv16633755)

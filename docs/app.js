@@ -40,9 +40,7 @@ function getMdFileList(rootPath){
 
                 const _dir = fs.statSync(filePath)
                 if (_dir.isDirectory() && jsShowDir.includes(dirname)) {
-                    console.log(filePath)
                     getFiles(filePath, filename)
-                    console.dir(side)
                 }
             })
         }
