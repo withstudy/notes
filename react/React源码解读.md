@@ -143,8 +143,6 @@
 
     如果你的 vscode 编辑器安装了 prettier 插件并且在保存 react 源码文件时右下角出现如下错误，按照如下步骤解决
 
-    <img src="./images/1.png" width="60%" align="left"/>
-
     1. 全局安装 prettier
 
        `npm i prettier -g`
@@ -152,8 +150,6 @@
     2. 配置 prettier path
 
        Settings > Extensions > Prettier > Prettier path
-
-       <img src="./images/2.png" width="80%" align="left"/>
 
 15. \_\_DEV\_\_ 报错
 
@@ -615,8 +611,6 @@ type Fiber = {
 };
 ```
 
-<img src="./images/6.png"/>
-
 ### 4.2 WorkTag
 
 `文件位置：packages/shared/ReactWorkTags.js`
@@ -787,9 +781,6 @@ React 使用双缓存技术完成 Fiber 树的构建与替换，实现DOM对象�
 
 在 current Fiber 节点对象中有一个 alternate 属性指向对应的 workInProgress Fiber 节点对象，在 workInProgress Fiber 节点中有一个 alternate 属性也指向对应的 current Fiber 节点对象。
 
-<img src="./images/3.png" width="40%"/>
-
-<img src="./images/4.png" width="40%"/>
 
 ### 4.8 区分 fiberRoot 与 rootFiber
 
@@ -804,8 +795,6 @@ rootFiber 指向 fiberRoot，在 rootFiber 对象中有一个 stateNode 属性�
 在 React 应用中 FiberRoot 只有一个，而 rootFiber 可以有多个，因为 render 方法是可以调用多次的
 
 fiberRoot 会记录应用的更新信息，比如协调器在完成工作后，会将工作成果存储在 fiberRoot 中。
-
-<img src="./images/7.png" width="90%" align="left"/>
 
 ## 5. 初始化渲染
 
@@ -969,8 +958,6 @@ function legacyRenderSubtreeIntoContainer(
   return getPublicRootInstance(fiberRoot);
 }
 ```
-
-<img src="./images/5.png" width="80%" align="left"/>
 
 ##### 5.1.3.2 legacyCreateRootFromDOMContainer
 
