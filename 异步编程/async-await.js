@@ -17,9 +17,9 @@ async function ajax(url){
 }
 
 async function getData(){
-    const users = await ajax('./user.json')
+    const users = await ajax('../user.json')
     console.log(users)
-    const posts = await ajax('./posts.json').then(res => res)
+    const posts = await ajax('../posts.json').then(res => res)
     console.log(posts)
 }
 

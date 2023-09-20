@@ -10,8 +10,8 @@ function ajax(url,callback){
 
 const callback = function (err,res){
     console.log(res)
-    ajax('./posts.json',(err,res) => {
+    ajax('../posts.json',(err,res) => {
         console.log(res)
     })
 }
-ajax('./user.json',callback)
+ajax('../user.json',callback)

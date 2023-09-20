@@ -1,4 +1,4 @@
-const MyPromise = require('./MyPromise')
+const MyPromise = require('../MyPromise')
 
 // 多个then
 // const promise = new MyPromise((resolve,reject) => {

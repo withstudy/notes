@@ -9,7 +9,7 @@ hero:
   actions:
     - theme: brand
       text: 开始阅读
-      link: /babel/polyfill.html
+      link: /start.html
     - theme: alt
       text: GitHub
       link: https://github.com/withstudy/notes
