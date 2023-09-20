@@ -56,5 +56,5 @@ function getFiles(dirPath, dirname, side) {
 
 const sides = getMdFileList(rootPath)
 // console.log(sides)
-// const sidesFilePath = path.resolve(toDirPath, 'sides.js')
-// fs.writeFileSync(sidesFilePath, `export default ${JSON.stringify(sides)}`)
+const sidesFilePath = path.resolve(toDirPath, 'sides.js')
+fs.writeFileSync(sidesFilePath, `export default ${JSON.stringify(sides)}`)
