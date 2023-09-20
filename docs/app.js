@@ -4,10 +4,11 @@ const path =require("path")
 
 const rootPath = path.resolve(__dirname,"../")
 const toDirPath = path.resolve(rootPath,'docs')
-const jsShowDir = ['数据结构', '自动化构建']
 const exludeDir = ["node_modules","docs", "Fiber","redux", "demo"]
 function getMdFileList(rootPath){
-    const sides = []
+    const sides = [
+        { text: "导言", link: '/introduction.md'}
+    ]
     const files = fs.readdirSync(rootPath)
     const dirs = files.filter(name => isNeedHandleDir(rootPath, name))
     dirs.forEach(dirname => {

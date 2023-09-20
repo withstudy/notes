@@ -9,7 +9,7 @@ hero:
   actions:
     - theme: brand
       text: 开始阅读
-      link: /start.html
+      link: /introduction.html
     - theme: alt
       text: GitHub
       link: https://github.com/withstudy/notes
