@@ -36,8 +36,7 @@ function getFiles(dirPath, dirname, side) {
             fs.mkdirSync(fileDirPath)
         }
         if (filename.endsWith('.md')) {
-            const fileContent = fs.readFileSync(filePath, 'utf-8')
-            fs.writeFileSync(newFilePath, fileContent)
+            fs.cpSync(filePath, newFilePath)
 
             side.items.push(item)
         }
