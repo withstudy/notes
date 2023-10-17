@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PWA Demo</title>
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="icon" href="./favicon.ico" />
+
+    <script type="text/javascript">
+        window.addEventListener('load', () => {
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(function (registration) {
+                        console.log('Service Worker 注册成功：', registration.scope);
+                    })
+                    .catch(function (error) {
+                        console.log('Service Worker 注册失败：', error);
+                    });
+            }
+        })
+    </script>
+</head>
+
+<body>
+    PWA Demo
+</body>
+
+</html>
