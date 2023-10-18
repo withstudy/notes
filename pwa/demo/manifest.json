@@ -1,0 +1,13 @@
+{
+    "name": "pwa demo",
+    "short_name": "pwa",
+    "start_url": "/",
+    "icons": [
+        {
+            "src": "./qiyun-logo.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "display": "standalone"
+}
