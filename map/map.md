@@ -31,7 +31,7 @@
 let map = null
 let marker = null
 window._AMapSecurityConfig = {
-    securityJsCode: '65beafd8f295454d9bb2b7d8873ea3b7',
+    securityJsCode: 'key',
 }
 let currentIcon = null
 export default {
@@ -89,7 +89,7 @@ export default {
         initMap() {
             const that = this
             AMapLoader.load({
-                "key": "87b32977116fbf11601ca907c943f499",              // 申请好的Web端开发者Key，首次调用 load 时必填
+                "key": "key",              // 申请好的Web端开发者Key，首次调用 load 时必填
                 "version": "2.0",   // 指定要加载的 JS API 的版本，缺省时默认为 1.4.15
                 "plugins": ['AMap.Geolocation', 'AMap.PlaceSearch'],
             }).then((AMap) => {
