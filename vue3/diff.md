@@ -1,4 +1,4 @@
-# vue3 diff 简易代码实现
+# vue2 diff 简易代码实现
 
 ```js
 const oldVNodes = [1,2,3,4]
