@@ -21,4 +21,12 @@ public class UserTests {
         // User user3 = ctx.getBean("User", User.class);
         // user3.say();
     }
+
+    @Test
+    public void testEmpJL() {
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("file.xml");
+        // 根据id获取bean
+        User user = (User) ctx.getBean("JL");
+        user.say();
+    }
 }

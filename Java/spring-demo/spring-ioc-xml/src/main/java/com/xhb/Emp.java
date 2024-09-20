@@ -17,6 +17,8 @@ public class Emp {
 
     public void work(){
         System.out.println("Emp work, name:" + name + " age:" + age + " dept:" + dept.name + "loves:" + Arrays.toString(loves));
-        dept.getUsers().forEach(user -> System.out.println(user.getName()));
+        if(dept.getUsers() != null){
+            dept.getUsers().forEach(user -> System.out.println(user.getName()));
+        }
     }
 }
