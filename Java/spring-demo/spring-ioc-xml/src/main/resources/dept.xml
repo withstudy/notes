@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/util
+    http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <bean id="Dept" class="com.xhb.Dept">
+        <property name="name" value="技术部"></property>
+        <!-- 集合属性注入 -->
+        <property name="users">
+            <list>
+                <ref bean="Emp"></ref>
+                <bean id="lisi" class="com.xhb.Emp">
+                    <property name="name" value="李四"></property>
+                    <property name="age" value="12"></property>
+                </bean>
+            </list>
+            <!-- Map属性注入 -->
+            <!-- <map name="testMap">
+                字面量值
+                <entry key="1" value="张三"></entry>
+                <entry>
+                    <key>
+                        <value>2</value>
+                    </key>
+                    <value>lisi</value>
+                </entry>
+                对象值
+                <entry key="1" ref="emp"></entry>
+                <entry>
+                    <key>2</key>
+                    <ref bean="ref"></ref>
+                </entry>
+            </map> -->
+        </property>
+    </bean>
+    <bean id="Emp" class="com.xhb.Emp">
+        <property name="name" value="张三"></property>
+        <property name="age" value="11"></property>
+
+        <!-- 外部bean注入 -->
+        <property name="dept" ref="Dept"></property>
+        <!-- 级联赋值 -->
+        <property name="dept.name" value="人力资源部"></property>
+
+        <!-- 内部bean注入 -->
+        <!-- <property name="dept">
+            <bean id="Dept2" class="com.xhb.Dept">
+                <property name="name" value="财务部"></property>
+            </bean>
+        </property> -->
+
+        <!-- 数组属性注入 -->
+        <property name="loves">
+            <array>
+                <value>篮球</value>
+                <value>足球</value>
+            </array>
+        </property>    
+    </bean>
+
+    <!-- p命名空间 -->
+    <bean id="Dept3" class="com.xhb.Dept" p:name="财务部" p:users-ref="testList"></bean>
+    <bean id="Emp2" class="com.xhb.Emp" p:name="王麻子" p:age="8" p:dept-ref="Dept3"></bean>
+
+    <!-- 定义map -->
+    <util:map id="testMap">
+        <entry key="1" value="张三"></entry>
+        <entry>
+            <key>
+                <value>2</value>
+            </key>
+            <value>lisi</value>
+        </entry>
+    </util:map>
+    <!-- 定义List -->
+    <util:list id="testList">
+        <ref bean="Emp"></ref>
+    </util:list>
+</beans>

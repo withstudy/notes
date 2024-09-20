@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+ 
+    <!-- 1、set注入 -->
+    <bean id="User" class="com.xhb.User">
+        <property name="name" value="xhb" />
+        <!-- 字面量值 -->
+        <!-- <property name="name"> -->
+            <!-- <null/> null值-->
+            <!-- <value>xhb</value> -->
+            <!-- <value><![CDATA[a < b]]> 特殊字符</value> -->
+        <!-- </property> -->
+    </bean>
+    <!-- 2、构造器注入 -->
+     <bean id="UserCon" class="com.xhb.User">
+        <constructor-arg name="name" value="xhb" />
+    </bean>
+</beans>
