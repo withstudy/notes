@@ -91,3 +91,84 @@ public class MyFactoryBean implements FactoryBean<User> {
 ```xml
 <bean id="user" class="com.xhb.factorybean.MyFactoryBean"/>
 ```
+
+## 注解
+
+### @Autowired
+
+- 默认按照类型进行自动装配，如果IOC容器中存在多个类型匹配的bean，则按照名称进行匹配
+- 可以使用@Qualifier注解指定bean的名称
+
+### @Resource
+
+- 默认按照名称进行自动装配，如果找不到匹配的bean，则按照类型进行匹配
+- 可以使用name属性指定bean的名称
+
+> jdk11以上，jdk自带的javax.annotation.Resource注解已经废弃，需要引入依赖
+```xml
+<dependency>
+    <groupId>jakarta.annotation</groupId>
+    <artifactId>jakarta.annotation-api</artifactId>
+    <version>2.1.1</version>
+</dependency>
+```
+
+### @Component
+
+- 标记一个类为Spring的组件，Spring会自动扫描并创建该类的实例
+- 可以使用value属性指定bean的名称
+
+### @Service
+
+- 标记一个类为Spring的服务层组件，Spring会自动扫描并创建该类的实例
+- 可以使用value属性指定bean的名称
+
+### @Repository
+
+- 标记一个类为Spring的持久层组件，Spring会自动扫描并创建该类的实例
+- 可以使用value属性指定bean的名称
+
+### @Controller
+
+- 标记一个类为Spring的控制器组件，Spring会自动扫描并创建该类的实例
+- 可以使用value属性指定bean的名称
+
+### @Configuration
+
+- 标记一个类为Spring的配置类，Spring会自动扫描并创建该类的实例
+- 可以使用value属性指定bean的名称
+
+### @ComponentScan
+
+- 标记一个类为Spring的组件扫描器，Spring会自动扫描并创建该类的实例
+- 可以使用basePackages属性指定要扫描的包名
+
+### @Bean
+
+- 标记一个方法为Spring的bean，Spring会自动调用该方法并创建该方法的返回值作为bean
+- 可以使用name属性指定bean的名称
+
+### @Scope
+
+- 标记一个bean的作用域，默认为singleton
+- 可以使用value属性指定bean的作用域，例如prototype、request、session、application等
+
+### @PostConstruct
+
+- 标记一个方法为bean的初始化方法，Spring会在bean创建后自动调用该方法
+- 可以使用value属性指定方法名
+
+### @PreDestroy
+
+- 标记一个方法为bean的销毁方法，Spring会在bean销毁前自动调用该方法
+- 可以使用value属性指定方法名
+
+### @Value
+
+- 标记一个属性为Spring的属性值，Spring会自动注入该属性的值
+- 可以使用value属性指定属性的值
+
+### @PropertySource
+
+- 标记一个类为Spring的属性源，Spring会自动加载该类的属性文件
+- 可以使用value属性指定属性文件的路径

@@ -39,7 +39,8 @@
     </dependencies>
 
     <modules>
-        <module>spring-ioc-xml</module>
+        <module>spring-ioc</module>
+        <module>spring-aop</module>
     </modules>
 
 </project>
