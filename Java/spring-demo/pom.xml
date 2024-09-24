@@ -50,6 +50,7 @@
         <module>spring-ioc</module>
         <module>spring-aop</module>
         <module>spring-tx</module>
+        <module>spring-validation</module>
     </modules>
 
 </project>
