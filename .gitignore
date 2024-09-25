@@ -9,6 +9,7 @@ pkg
 target
 
 .vscode
+**/**/.vscode
 
 package-lock.json
 **/package-lock.json
