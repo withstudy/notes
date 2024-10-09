@@ -3,6 +3,8 @@ package com.xhb;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -12,22 +14,68 @@ import org.junit.jupiter.api.Test;
 
 import com.xhb.mapper.UserMapper;
 import com.xhb.pojo.User;
+import com.xhb.util.SqlSessionUtil;
 
 public class UserTests {
 
     @Test
     public void testUesrSelect() throws IOException {
-        InputStream is = Resources.getResourceAsStream("mybatis-config.xml");
-        // 1.获取sqlSessionFactory
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
-        // 2.获取sqlSession
-        SqlSession sqlSession = sqlSessionFactory.openSession(true);
-        // 3.获取mapper接口的代理对象
-        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
-        // 4.执行方法
+        UserMapper mapper = SqlSessionUtil.getMapper(UserMapper.class);
         List<User> users = mapper.queryAllUsers();
         System.out.println(users);
-        // 5.释放资源
-        sqlSession.close();
+    }
+
+    @Test
+    public void testUesrSelectByIdName() {
+        UserMapper mapper = SqlSessionUtil.getMapper(UserMapper.class);
+        User user = mapper.queryUserByIdName(1, "xhb");
+        System.out.println(user);
+    }
+
+    @Test
+    public void testUesrSelectByIdNameMap() {
+        UserMapper mapper = SqlSessionUtil.getMapper(UserMapper.class);
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", 1);
+        map.put("name", "xhb");
+        User user = mapper.queryUserByIdNameMap(map);
+        System.out.println(user);
+    }
+
+    @Test
+    public void testInsertUser() {
+        UserMapper mapper = SqlSessionUtil.getMapper(UserMapper.class);
+        User user = new User();
+        user.setName("xhbsb");
+        user.setBlance(18);
+        mapper.insertUser(user);
+    }
+
+    @Test
+    public void testUesrSelectByIdNameParam() {
+        UserMapper mapper = SqlSessionUtil.getMapper(UserMapper.class);
+        User user = mapper.queryUserByIdNameParam(1, "xhb");
+        System.out.println(user);
+    }
+
+    @Test
+    public void testUesrSelectByIdToMap() {
+        UserMapper mapper = SqlSessionUtil.getMapper(UserMapper.class);
+        Map<String, Object> map = mapper.queryUserByIdToMap(1);
+        System.out.println(map);
+    }
+
+    @Test
+    public void testUesrSelectAllToMap() {
+        UserMapper mapper = SqlSessionUtil.getMapper(UserMapper.class);
+        List<Map<String, Object>> map = mapper.queryAllUserToMap();
+        System.out.println(map);
+    }
+
+    @Test
+    public void testUesrSelectAllToMapByKey() {
+        UserMapper mapper = SqlSessionUtil.getMapper(UserMapper.class);
+        Map<String, Object> map = mapper.queryAllUserToMapByKey();
+        System.out.println(map);
     }
 }
