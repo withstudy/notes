@@ -26,4 +26,8 @@ public interface UserMapper {
 
     @MapKey("id")
     Map<String, Object> queryAllUserToMapByKey();
+
+    List<User> queryUserByBlurName(@Param("name") String name);
+
+    int batchDeleteUser(@Param("ids") String ids);
 }   

@@ -5,6 +5,13 @@
 <configuration>
     <properties resource="jdbc.properties"></properties>
 
+    <settings>
+      <!-- 开启下划线变为驼峰 -->
+      <setting name="mapUnderscoreToCamelCase" value="true" />
+      <!-- 开启延迟加载 -->
+      <setting name="lazyLoadingEnabled" value="true" />
+    </settings>
+
     <!-- 实体类别名 -->
     <typeAliases>
         <!-- <typeAliase type="com.xhb.xhb.pojo.User" alias="User" /> -->

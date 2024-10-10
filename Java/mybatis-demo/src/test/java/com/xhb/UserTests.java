@@ -78,4 +78,18 @@ public class UserTests {
         Map<String, Object> map = mapper.queryAllUserToMapByKey();
         System.out.println(map);
     }
+
+    @Test 
+    public void testQueryUserByBlurName() {
+        UserMapper mapper = SqlSessionUtil.getMapper(UserMapper.class);
+        List<User> users = mapper.queryUserByBlurName("2");
+        System.out.println(users);
+    }
+
+    @Test 
+    public void testBatchDeleteUser() {
+        UserMapper mapper = SqlSessionUtil.getMapper(UserMapper.class);
+        int res = mapper.batchDeleteUser("1, 2, 3");
+        System.out.println(res);
+    }
 }

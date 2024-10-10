@@ -48,4 +48,18 @@
     <select id="queryAllUserToMapByKey" resultType="Map">
         select * from t_user
     </select>
+
+    <!-- 模糊查询 -->
+    <!-- List<User> queryUserByBlurName(@Param("name") String name); -->
+    <select id="queryUserByBlurName" resultType="User">
+        <!-- select * from t_user where name like '%${name}%' -->
+        <!-- select * from t_user where name like concat('%', #{name}, '%') -->
+        select * from t_user where name like "%"#{name}"%"
+    </select>
+
+    <!-- 批量删除 -->
+    <!-- int batchDeleteUser(@Param("ids") String ids); -->
+    <delete id="batchDeleteUser">
+        delete from t_user where id in (${ids})
+    </delete>
 </mapper>
