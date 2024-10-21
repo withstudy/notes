@@ -6,4 +6,14 @@
         <select id="findDeptById" resultType="Dept">
             select * from dept where did=#{did}
         </select>
+
+        <resultMap id="deptEmpMap" type="Dept">
+                <id property="did" column="did"></id>
+                <result property="deptName" column="dept_name"></result>
+                <collection property="empList" column="did" select="com.xhb.mapper.EmpMapper.findEmpByDid"></collection>
+        </resultMap>
+        <!-- Dept findDeptByIdForEmp(@Param("did") int did); -->
+        <select id="findDeptByIdForEmp" resultMap="deptEmpMap">
+                select * from dept where did = #{did}
+        </select>
 </mapper>

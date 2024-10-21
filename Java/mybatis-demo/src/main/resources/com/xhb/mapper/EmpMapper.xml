@@ -35,4 +35,9 @@
     <select id="findAllEmpStep" resultMap="empStepResultMap">
         select * from emp
     </select>
+
+    <!-- List<Emp> findEmpByDid(@Param("did") int did); -->
+    <select id="findEmpByDid" resultType="Emp">
+        select * from emp where emp.did = #{did}
+    </select>
 </mapper>
