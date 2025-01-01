@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xhb.mapper.DeptMapper">
+        <!-- Dept findDeptById(@Param("did") int did); -->
+        <select id="findDeptById" resultType="Dept">
+            select * from dept where did=#{did}
+        </select>
+
+        <resultMap id="deptEmpMap" type="Dept">
+                <id property="did" column="did"></id>
+                <result property="deptName" column="dept_name"></result>
+                <collection property="empList" column="did" select="com.xhb.mapper.EmpMapper.findEmpByDid"></collection>
+        </resultMap>
+        <!-- Dept findDeptByIdForEmp(@Param("did") int did); -->
+        <select id="findDeptByIdForEmp" resultMap="deptEmpMap">
+                select * from dept where did = #{did}
+        </select>
+</mapper>

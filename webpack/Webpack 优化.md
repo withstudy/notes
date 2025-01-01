@@ -51,3 +51,7 @@ version: 5.0
 
 * `splitChunks`
 * `懒加载`
+
+## scope hoisting
+
+作用域提升

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xhb.mapper.UserMapper">
+    <select id="queryAllUsers" resultType="User">
+        select * from t_user
+    </select>
+    <!-- 多个参数 -->
+    <!-- User queryUserByIdName(int id, String name); -->
+    <select id="queryUserByIdName" resultType="User">
+        <!-- select * from t_user where id = #{arg0} and name = #{arg1} -->
+        <!-- select * from t_user where id = #{param1} and name = #{param2} -->
+        select * from t_user where id = ${arg0} and name = '${arg1}'
+    </select>
+
+    <!-- 参数是map 可以直接用key取值  -->
+    <!-- User queryUserByIdNameMap(Map<String, Object> map); -->
+    <select id="queryUserByIdNameMap" resultType="User">
+        select * from t_user where id = #{id} and name = #{name}
+    </select>
+
+    <!-- 参数是对象 可以直接属性名取值 -->
+    <!-- int insertUser(User user); -->
+    <insert id="insertUser">
+        insert into t_user values(null, #{name}, #{blance})
+    </insert>
+
+    <!-- 注解方式 -->
+    <!-- User queryUserByIdNameParam(@Param("id") int id, @Param("name") String name); -->
+    <select id="queryUserByIdNameParam" resultType="User">
+        select * from t_user where id = ${id} and name = '${name}'
+    </select>
+
+    <!-- 查询为map -->
+    <!-- Map<String, Object> queryUserByIdToMap(int id); -->
+    <select id="queryUserByIdToMap" resultType="Map">
+        select * from t_user where id = #{id}
+    </select>
+
+    <!-- 多条数据 -->
+    <!-- List<Map<String, Object>> queryAllUserToMap(); -->
+    <select id="queryAllUserToMap" resultType="Map">
+        select * from t_user
+    </select>
+
+    <!-- @MapKey("id")  -->
+    <!-- Map<String, Object> queryAllUserToMapByKey(); -->
+    <select id="queryAllUserToMapByKey" resultType="Map">
+        select * from t_user
+    </select>
+
+    <!-- 模糊查询 -->
+    <!-- List<User> queryUserByBlurName(@Param("name") String name); -->
+    <select id="queryUserByBlurName" resultType="User">
+        <!-- select * from t_user where name like '%${name}%' -->
+        <!-- select * from t_user where name like concat('%', #{name}, '%') -->
+        select * from t_user where name like "%"#{name}"%"
+    </select>
+
+    <!-- 批量删除 -->
+    <!-- int batchDeleteUser(@Param("ids") String ids); -->
+    <delete id="batchDeleteUser">
+        delete from t_user where id in (${ids})
+    </delete>
+</mapper>

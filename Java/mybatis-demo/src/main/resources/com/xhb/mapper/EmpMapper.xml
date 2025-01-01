@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xhb.mapper.EmpMapper">
+
+    <resultMap id="empResultType" type="Emp">
+        <id property="eid" column="eid"/>
+        <result property="empName" column="emp_name"/>
+        <result property="sex" column="sex"/>
+        <result property="age" column="age"/>
+        <!-- <result property="dept.did" column="did"/>
+        <result property="dept.deptName" column="dept_name"/> -->
+        <association property="dept" javaType="Dept">
+            <id property="did" column="did"/>
+            <result property="deptName" column="dept_name"/>
+        </association>
+    </resultMap>
+
+    <resultMap id="empStepResultMap" type="Emp">
+        <id property="eid" column="eid"/>
+        <result property="empName" column="emp_name"/>
+        <result property="sex" column="sex"/>
+        <result property="age" column="age"/>
+        <association property="dept" column="did" select="com.xhb.mapper.DeptMapper.findDeptById">
+        </association>
+    </resultMap>
+
+    <!-- List<Emp> findAllEmp(); --> 
+    <select id="findAllEmp" resultMap="empResultType">
+        select * from emp left join dept on emp.did = dept.did
+    </select>
+
+    <!-- 分步查询 -->
+    <!-- List<Emp> findAllEmpStep(); -->
+    <select id="findAllEmpStep" resultMap="empStepResultMap">
+        select * from emp
+    </select>
+
+    <!-- List<Emp> findEmpByDid(@Param("did") int did); -->
+    <select id="findEmpByDid" resultType="Emp">
+        select * from emp where emp.did = #{did}
+    </select>
+</mapper>

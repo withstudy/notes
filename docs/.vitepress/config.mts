@@ -9,7 +9,7 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { "text": "Home", "link": "/" },
-      { "text": "MyInfo", "link": "https://www.xxcl.fun" }
+      { "text": "MyInfo", "link": "https://www.xxcl.site" }
     ],
 
     sidebar: sides,

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="jdbc.properties"></properties>
+
+    <settings>
+      <!-- 开启下划线变为驼峰 -->
+      <setting name="mapUnderscoreToCamelCase" value="true" />
+      <!-- 开启延迟加载 -->
+      <setting name="lazyLoadingEnabled" value="true" />
+    </settings>
+
+    <!-- 实体类别名 -->
+    <typeAliases>
+        <!-- <typeAliase type="com.xhb.xhb.pojo.User" alias="User" /> -->
+        <!-- 批量定义别名 -->
+        <package name="com.xhb.pojo" />
+    </typeAliases>
+
+  <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+      </dataSource>
+    </environment>
+  </environments>
+ 
+  <mappers>
+    <!-- 注册 mapper 文件 -->
+    <!-- <mapper resource="mappers/UserMapper.xml"/> -->
+    <!-- 
+        以包为单位，将指定包下的所有 mapper 接口进行注册
+        注意：必须满足以下要求
+        1. mapper 接口所在的包必须和 mapper 映射文件所在的包一致
+        2. mapper 接口名称和 mapper 映射文件名称必须一致
+     -->
+    <package name="com.xhb.mapper" />
+  </mappers>
+</configuration>
