@@ -97,3 +97,52 @@ public class Test {
     }
 }
 ```
+
+## 三、线程通信
+
+### 1.wait和notify
+
+wait和notify是Object的方法，用于线程间的通信。
+
+* wait： 线程进入等待状态，并释放锁。
+* notify： 唤醒一个等待的线程。
+
+```java
+public class Test {
+    private Object lock = new Object();
+    public void test() {
+        synchronized (lock) {
+            try {
+                lock.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+```
+
+### 2.Condition
+
+Condition是Lock的实现类，它的作用是保证原子性、可见性、有序性。上锁和解锁都是手动的。
+
+* await： 线程进入等待状态，并释放锁。
+* signal： 唤醒一个等待的线程。
+
+```java
+public class Test {
+    private Lock lock = new ReentrantLock();
+    private Condition condition = lock.newCondition();
+    public void test() {
+        lock.lock();
+        try {
+            condition.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            lock.unlock();
+        }
+    }
+}
+```
+

@@ -1,4 +1,4 @@
-package com.xhb.demo;
+package com.xhb.demo.lock;
 
 import java.util.concurrent.locks.ReentrantLock;
 
