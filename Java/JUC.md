@@ -146,3 +146,39 @@ public class Test {
 }
 ```
 
+## 四、集合线程安全
+
+当多个线程访问和操作集合时，会产生报错
+
+```java
+ArrayList<String> arr = new ArrayList<>();
+        for (int i = 0; i < 30; i++) {
+            new Thread(() -> {
+                arr.add(UUID.randomUUID().toString().substring(1, 8));
+                System.out.println(arr.toString());
+            }, String.valueOf(i)).start();
+        }
+```
+
+### 1.Vector
+
+Vector是线程安全的，但是效率低。
+```java
+List<String> list = new Vector<>();
+```
+
+### 2.Collections
+
+Collections是Java提供的一个工具类，它提供了多个方法来保证集合的线程安全。
+
+```java
+List<String> list = Collections.synchronizedList(new ArrayList<>());
+```
+
+### 3.CopyOnWriteArrayList
+
+### 4.CopyOnWriteArraySet
+
+### 5.ConcurrentHashMap
+
+
