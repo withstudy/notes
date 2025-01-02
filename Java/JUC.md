@@ -31,6 +31,38 @@ JUC是指java.util.concurrent包，是java并发编程的工具包。
 
 管程作用是jvm中控制离开线程和进入线程的对象。
 
+### 6.创建线程的方式
+
+* 继承Thread类
+
+```java
+public class Test extends Thread {
+    @Override
+    public void run() {
+        System.out.println("test");
+    }
+}
+// 创建线程
+new Test().start();
+```
+
+* 实现Runnable接口
+
+```java
+public class Test implements Runnable {
+    @Override
+    public void run() {
+        System.out.println("test");
+    }
+}
+// 创建线程
+new Thread(new Test(), "A").start();
+```
+
+* 实现Callable接口
+
+* 线程池
+
 ### 6.用户线程和守护线程
 
 * 用户线程： 当一个进程不包含任何的存活的用户线程时，进程结束。
@@ -270,3 +302,22 @@ public class DeadLock {
 
 * jps： 查看进程，`jps -l` 查看死锁进程的pid
 * jstack： 查看进程的线程信息, `jstack <pid>` 查看死锁进程的线程信息
+
+### 5.Callable接口
+
+Callable接口是一个泛型接口，它的作用是可以有返回值，并且可以抛出异常。
+
+```java
+public class Test implements Callable<String> {
+    @Override
+    public String call() throws Exception {
+        return "test";
+    }
+}
+
+// 创建线程
+FutureTask<String> futureTask = new FutureTask<>(new Test());
+new Thread(futureTask, "A").start();
+// 获取返回值
+String result = futureTask.get();
+```
