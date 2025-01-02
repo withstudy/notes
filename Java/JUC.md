@@ -321,3 +321,80 @@ new Thread(futureTask, "A").start();
 // 获取返回值
 String result = futureTask.get();
 ```
+
+### 6.辅助类
+
+#### CountDownLatch
+
+CountDownLatch是一个计数器，它的作用是让线程等待，直到计数器变为0。
+
+```java
+public class Test {
+    public static void main(String[] args) throws InterruptedException {
+        CountDownLatch countDownLatch = new CountDownLatch(6);
+        for (int i = 0; i < 6; i++) {
+            new Thread(() -> {
+                System.out.println(Thread.currentThread().getName() + "Go out");
+                countDownLatch.countDown();
+            }, String.valueOf(i)).start();
+        }
+        countDownLatch.await();
+        // countDownLatch等于0，才会执行下面的代码
+        System.out.println("Close door");
+    }
+}
+```
+
+#### CyclicBarrier
+
+CyclicBarrier是一个计数器，它的作用是让线程等待，直到计数器变为0。
+
+```java
+public class Test {
+    public static void main(String[] args) {
+        CyclicBarrier cyclicBarrier = new CyclicBarrier(7, () -> {
+            System.out.println("召唤神龙");
+        });
+        for (int i = 0; i < 7; i++) {
+            final int temp = i;
+            new Thread(() -> {
+                System.out.println(Thread.currentThread().getName() + "收集" + temp + "龙珠");
+                try {
+                    cyclicBarrier.await();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (BrokenBarrierException e) {
+                    e.printStackTrace();
+                }
+            }, String.valueOf(i)).start();
+        }
+    }
+}
+```
+
+#### Semaphore
+
+Semaphore是一个计数器，它的作用是控制线程的并发数。
+
+```java
+public class Test {
+        // 设置许可数量
+        Semaphore semaphore = new Semaphore(3);
+        for (int i = 0; i < 6; i++) {
+            new Thread(() -> {
+                try {
+                    // 消费许可数量
+                    semaphore.acquire();
+                    System.out.println(Thread.currentThread().getName() + "Go out");
+                    Thread.sleep(3000);
+                    System.out.println(Thread.currentThread().getName() + "Back");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } finally {
+                    // 释放许可数量
+                    semaphore.release();
+                }
+            }, String.valueOf(i)).start();
+        }
+}
+```
