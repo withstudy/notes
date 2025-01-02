@@ -181,4 +181,92 @@ List<String> list = Collections.synchronizedList(new ArrayList<>());
 
 ### 5.ConcurrentHashMap
 
+## 五、多线程锁
 
+### 1.Synchronized关键字
+
+* 对于普通同步方法，锁是当前实例对象。
+* 对于静态同步方法，锁是当前类的Class对象。
+* 对于同步方法块，锁是Synchonized括号里配置的对象。
+
+### 2.公平锁和非公平锁
+
+* 公平锁： 线程按照申请锁的顺序来获取锁。效率低。
+* 非公平锁： 线程获取锁的顺序并不是按照申请锁的顺序，有可能后申请的线程比先申请的线程优先获取锁。效率高。
+
+```java
+// true 表示公平锁，false 表示非公平锁
+Lock lock = new ReentrantLock(true);
+```
+
+### 3.可重入锁
+
+可重入锁是指在同一个线程内，外层函数获得锁之后，内层递归函数仍然能获取该锁的代码，在同一个线程在外层方法获取锁的时候，在进入内层方法会自动获取锁。 
+
+Synchronized和ReentrantLock都是可重入锁。
+
+```java
+public class Test {
+    private Lock lock = new ReentrantLock();
+    public void test() {
+        lock.lock();
+        try {
+            System.out.println("test");
+            test1();
+        } finally {
+            lock.unlock();
+        }
+    }
+    public void test1() {
+        lock.lock();
+        try {
+            System.out.println("test1");
+        } finally {
+            lock.unlock();
+        }
+    }
+}
+```
+
+### 4.死锁
+
+死锁是指两个或两个以上的进程在执行过程中，由于`竞争资源`或者由于`彼此通信`而造成的一种阻塞的现象，若无外力作用，它们都将无法推进下去。
+
+此时称系统处于死锁状态或系统产生了死锁，这些永远在互相等待的进程称为死锁进程。
+
+```java
+public class DeadLock {
+    public static void main(String[] args) {
+        Object a = new Object();
+        Object b = new Object();
+        new Thread(() -> {
+            synchronized (a) {
+                System.out.println("A");
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                synchronized (b) {
+                    System.out.println("B");
+                }
+            }
+        }).start();
+
+        new Thread(() -> {
+            synchronized (b) {
+                System.out.println("B");
+                synchronized (a) {
+                    System.out.println("A");
+                }
+            }
+        }).start();
+    }
+}
+
+```
+
+#### 验证死锁
+
+* jps： 查看进程，`jps -l` 查看死锁进程的pid
+* jstack： 查看进程的线程信息, `jstack <pid>` 查看死锁进程的线程信息
