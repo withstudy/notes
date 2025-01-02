@@ -398,3 +398,94 @@ public class Test {
         }
 }
 ```
+
+### 7.读写锁
+
+#### 悲观锁\乐观锁
+
+悲观锁针对数据操作只要加锁，其他线程都不能操作。只有解锁后，其他线程才能操作。
+
+乐观锁每个线程都可以操作数据，但是在操作数据时，会检查数据是否被修改。
+
+乐观锁的实现方式有两种：
+
+* 版本号： 每次操作数据时，都会将版本号加1。在操作数据时，会检查版本号是否被修改。
+* CAS： 比较并交换。在操作数据时，会比较数据是否被修改。
+
+#### 共享锁\排他锁
+
+共享锁是指多个线程可以同时读取数据。
+
+`ReentrantReadWriteLock`是一个共享锁。
+
+排他锁是指多个线程只能一个线程读取数据。
+
+`Synchronized`和`ReentrantLock`都是悲观锁。
+
+#### 表锁\行锁
+
+表锁是指对整张表加锁。
+
+表锁会发生死锁。
+
+行锁是指对一行数据加锁。
+
+#### 读锁\写锁
+
+读锁又称为共享锁。会发生死锁。
+
+写锁又称为排他锁、独占锁。会发生死锁。
+
+使用`ReentrantReadWriteLock`实现读写锁。
+
+> 读是共享的，可以多个线程同时读取数据，但是写是独占的，只能一个线程写入数据。
+> 并且只有读完才能写。
+
+```java
+public class Test {
+    private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
+    private Lock readLock = lock.readLock();
+    private Lock writeLock = lock.writeLock();
+    public void read() {
+        readLock.lock();
+        try {
+            System.out.println("read");
+        } finally {
+            readLock.unlock();
+        }
+    }
+    public void write() {
+        writeLock.lock();
+        try {
+            System.out.println("write");
+        } finally {
+            writeLock.unlock();
+        }
+    }
+}
+```
+
+写锁可以降级为读锁。但是读锁不能升级为写锁。
+
+降级过程：先获取写锁，再获取读锁，然后释放写锁，最后释放读锁。
+
+```java
+public class Test {
+    private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
+    private Lock readLock = lock.readLock();
+    private Lock writeLock = lock.writeLock();
+    public void read() {
+        readLock.lock();
+        try {
+            System.out.println("read");
+            writeLock.lock();
+            try {
+                System.out.println("write");
+            } finally {
+                writeLock.unlock();
+            }
+        } finally {
+            readLock.unlock();
+        }
+    }
+}
